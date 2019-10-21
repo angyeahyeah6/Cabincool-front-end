@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 
 import '@/assets/reset.css'
+import '@mdi/font/css/materialdesignicons.css'
 
 Vue.config.productionTip = false
 
