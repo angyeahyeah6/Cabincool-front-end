@@ -6,7 +6,7 @@
         type="text"
         autocomplete="off"
       >
-      <span></span>
+      <span class="search__icon mdi mdi-magnify"></span>
     </div>
     <a
       href=""
@@ -56,12 +56,20 @@ export default {
     position: absolute;
     left: 10%;
     right: 10%;
+    &__icon {
+      position: absolute;
+      left: 16px;
+      top: 0;
+      font-size: 24px;
+      z-index: 11;
+      line-height: 56px;
+    }
     &__input {
       box-sizing: border-box;
       width: 40%;
       z-index: 11;
       background: transparent;
-      padding-left: 32px;
+      padding-left: 48px;
       border: none;
       outline: none;
       background-size: 200% 100%;
