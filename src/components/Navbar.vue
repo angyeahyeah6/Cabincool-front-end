@@ -33,6 +33,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$nav-height: 56px;
+
 * {
   font-size: 15px;
   font-family: Roboto;
@@ -45,7 +47,7 @@ export default {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  height: 56px;
+  height: $nav-height;
   width: 100%;
   padding: 0 10%;
   background: white;
@@ -62,7 +64,7 @@ export default {
       top: 0;
       font-size: 24px;
       z-index: 11;
-      line-height: 56px;
+      line-height: $nav-height;
     }
     &__input {
       box-sizing: border-box;
@@ -103,7 +105,7 @@ export default {
     z-index: 1;
 
     a {
-      line-height: 56px;
+      line-height: $nav-height;
       padding: 0 22px;
       text-decoration: none;
       color: #435058;
