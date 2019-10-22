@@ -68,7 +68,7 @@ $nav-height: 56px;
     }
     &__input {
       box-sizing: border-box;
-      width: 40%;
+      width: 45%;
       z-index: 11;
       background: transparent;
       padding-left: 48px;
@@ -78,10 +78,10 @@ $nav-height: 56px;
       background-position: 100% 0;
       background-image: linear-gradient(
         to right,
-        #c6f4f1 66%,
+        #c6f4f1 75%,
         rgba(255, 255, 255, 0)
       );
-      transition: width 0.5s, background 0.3s 0.3s;
+      transition: width 0.3s, background 0.15s 0.15s;
       &:focus {
         width: 100%;
         background-color: #c6f4f1;
@@ -113,8 +113,9 @@ $nav-height: 56px;
   }
   .login-btn {
     margin-left: 22px;
-    padding: 10px 16px;
+    padding: 6.5px 10px;
     border: 2px solid #435058;
+    background: white;
     z-index: 1;
     &:hover {
       background: #848c8e;
