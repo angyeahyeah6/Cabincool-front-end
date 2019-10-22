@@ -21,7 +21,7 @@
       </li>
     </ol>
     <button class="login-btn">
-      使用登入
+      使用<img src="../assets/google-login.png">登入
     </button>
   </header>
 </template>
@@ -111,6 +111,7 @@ $nav-height: 56px;
       color: #435058;
     }
   }
+
   .login-btn {
     margin-left: 22px;
     padding: 6.5px 10px;
