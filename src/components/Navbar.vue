@@ -97,7 +97,7 @@ $nav-height: 56px;
     font-size: 24px;
     line-height: 28px;
     text-decoration: none;
-    z-index: 10px;
+    z-index: 10;
   }
   .nav {
     display: flex;
