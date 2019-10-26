@@ -20,26 +20,23 @@
         <a href="">探索</a>
       </li>
     </ol>
-    <button class="login-btn">
-      使用登入
-    </button>
+    <login-button></login-button>
   </header>
 </template>
 
 <script>
-export default {
+import LoginButton from '@/components/LoginButton'
 
+export default {
+  components: {
+    LoginButton
+  }
 }
 </script>
 
 <style scoped lang="scss">
-$nav-height: 56px;
 
-* {
-  font-size: 15px;
-  font-family: Roboto;
-  color: #435058;
-}
+$nav-height: 56px;
 
 .header {
   display: flex;
@@ -108,24 +105,6 @@ $nav-height: 56px;
       line-height: $nav-height;
       padding: 0 22px;
       text-decoration: none;
-      color: #435058;
-    }
-  }
-  .login-btn {
-    margin-left: 22px;
-    padding: 10px 16px;
-    border: 2px solid #435058;
-    z-index: 1;
-    &:hover {
-      background: #848c8e;
-      border: 2px solid #848c8e;
-      color: white;
-    }
-    &:focus {
-      background: #435058;
-      border: 2px solid #435058;
-      color: white;
-      outline: none;
     }
   }
 }
