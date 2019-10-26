@@ -66,7 +66,7 @@ $nav-height: 56px;
     }
     &__input {
       box-sizing: border-box;
-      width: 40%;
+      width: 45%;
       z-index: 11;
       background: transparent;
       padding-left: 48px;
@@ -74,10 +74,10 @@ $nav-height: 56px;
       outline: none;
       background-image: linear-gradient(
         to right,
-        #c6f4f1 66%,
+        #c6f4f1 75%,
         rgba(255, 255, 255, 0)
       );
-      transition: width 0.5s, background 0.3s 0.3s;
+      transition: width 0.3s, background 0.15s 0.15s;
       &:focus {
         width: 100%;
         background-color: #c6f4f1;
