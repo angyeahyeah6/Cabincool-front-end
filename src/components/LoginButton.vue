@@ -18,7 +18,7 @@ export default {
   display: flex;
   align-items: center;
   margin-left: 22px;
-  padding: 10px 16px;
+  padding: 8px 16px;
   border: 2px solid #435058;
   z-index: 1;
   outline: none;
