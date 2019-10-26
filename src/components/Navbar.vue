@@ -36,7 +36,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 $nav-height: 56px;
 
 .header {
@@ -81,9 +80,17 @@ $nav-height: 56px;
       &:focus {
         width: 100%;
         background-color: #c6f4f1;
+        color: black;
+        &::placeholder {
+          color: black;
+        }
+        & + .search__icon {
+          color: black;
+        }
       }
     }
   }
+
   .title {
     position: absolute;
     font-weight: bold;
