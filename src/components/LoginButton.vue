@@ -20,6 +20,7 @@ export default {
   margin-left: 22px;
   padding: 8px 16px;
   border: 2px solid #435058;
+  background: white;
   z-index: 1;
   outline: none;
   transition: 0.2s;
