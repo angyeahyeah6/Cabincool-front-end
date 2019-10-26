@@ -4,6 +4,7 @@
       <input
         class="search__input"
         type="text"
+        placeholder="Search"
         autocomplete="off"
       >
       <span class="search__icon mdi mdi-magnify"></span>
