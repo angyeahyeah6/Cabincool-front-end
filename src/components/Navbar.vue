@@ -47,15 +47,15 @@ $nav-height: 56px;
   box-sizing: border-box;
   height: $nav-height;
   width: 100%;
-  padding: 0 10%;
+  padding: 0 100px;
   background: white;
   box-shadow: 0px 0px 10px #aaa;
   .search {
     display: flex;
     height: 100%;
     position: absolute;
-    left: 10%;
-    right: 10%;
+    left: 100px;
+    right: 100px;
     &__icon {
       position: absolute;
       left: 16px;
@@ -72,8 +72,6 @@ $nav-height: 56px;
       padding-left: 48px;
       border: none;
       outline: none;
-      background-size: 200% 100%;
-      background-position: 100% 0;
       background-image: linear-gradient(
         to right,
         #c6f4f1 66%,
@@ -92,7 +90,6 @@ $nav-height: 56px;
     font-size: 24px;
     line-height: 28px;
     text-decoration: none;
-    color: #435058;
     z-index: 10px;
   }
   .nav {
