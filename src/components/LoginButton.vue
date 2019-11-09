@@ -19,7 +19,7 @@ export default {
       // Receive the idToken and make your magic with the backend
     },
     OnGoogleAuthFail (error) {
-      console.log(error)
+      this.$alert(error)
     }
   }
 }
@@ -36,6 +36,7 @@ export default {
   z-index: 1;
   outline: none;
   transition: 0.2s;
+  color:black !important;
   &:hover {
     background: #848c8e;
     border: 2px solid #848c8e;

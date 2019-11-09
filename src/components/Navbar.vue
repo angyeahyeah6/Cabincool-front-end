@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" v-bind:style="background">
     <div class="search">
       <input
         class="search__input"
@@ -18,27 +18,24 @@
         <a href="">提問</a>
       </li>
       <li>
-        <a href="">探索</a>
-      </li>
-      <li>
-        <a href=""><LoginButton></LoginButton></a>
+        <a href="/product">探索</a>
       </li>
     </ol>
+    <LoginButton></LoginButton>
   </header>
 </template>
 
 <script>
 import LoginButton from '@/components/LoginButton'
 export default {
+  background: 'blue',
   components: {
     LoginButton
   }
 }
 </script>
-
-<style scoped lang="scss">
+<style lang="scss">
 $nav-height: 56px;
-
 .header {
   display: flex;
   position: relative;
