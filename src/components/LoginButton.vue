@@ -1,61 +1,34 @@
-
 <template>
-  <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure">Login</GoogleLogin>
+  <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
 </template>
-
 <script>
-import GoogleLogin from 'vue-google-login'
-const CLIENT_ID = '149578749039-8ki9dmmfnod66fl59hd6mduedr3rvre3.apps.googleusercontent.com'
+import GoogleSignInButton from 'vue-google-signin-button-directive'
 export default {
-  data () {
-    return {
-      params: {
-        client_id: CLIENT_ID
-      },
-      renderParams: {
-        width: 250,
-        height: 50,
-        longtitle: true
-      }
-    }
+  directives: {
+    GoogleSignInButton
   },
-  components: {
-    GoogleLogin
-  },
+  data: () => ({
+    clientId: '149578749039-8ki9dmmfnod66fl59hd6mduedr3rvre3.apps.googleusercontent.com'
+  }),
   methods: {
-    onSuccess (googleUser) {
-      console.log(googleUser)
+    OnGoogleAuthSuccess (idToken) {
+      // Receive the idToken and make your magic with the backend
     },
-    onFailure (err) {
-      console.log(err)
+    OnGoogleAuthFail (error) {
+      console.log(error)
     }
   }
 }
 </script>
-<style lang="scss" scoped>
-.login-btn {
-  display: flex;
-  align-items: center;
-  margin-left: 22px;
-  padding: 6.5px 10px;
-  border: 2px solid #435058;
-  background: white;
-  z-index: 1;
-  outline: none;
-  transition: 0.2s;
-  &:hover {
-    background: #848c8e;
-    border: 2px solid #848c8e;
-    color: white;
-  }
-  &:active {
-    background: #435058;
-    border: 2px solid #435058;
-    color: white;
-  }
-  &__logo {
-    width: 15px;
-    padding: 0 8px;
-  }
+
+<style>
+.google-signin-button {
+color: white;
+background-color: red;
+height: 50px;
+font-size: 16px;
+border-radius: 10px;
+padding: 10px 20px 25px 20px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 </style>

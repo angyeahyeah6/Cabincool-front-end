@@ -20,8 +20,10 @@
       <li>
         <a href="">探索</a>
       </li>
+      <li>
+        <a href=""><LoginButton></LoginButton></a>
+      </li>
     </ol>
-    <login-button></login-button>
   </header>
 </template>
 
