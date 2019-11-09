@@ -1,5 +1,9 @@
 <template>
-  <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
+  <button v-google-signin-button="clientId" class="login-btn">
+    使用<img
+      class="login-btn__logo"
+      src="../assets/google-login.png"
+    >登入</button>
 </template>
 <script>
 import GoogleSignInButton from 'vue-google-signin-button-directive'
@@ -13,22 +17,38 @@ export default {
   methods: {
     OnGoogleAuthSuccess (idToken) {
       // Receive the idToken and make your magic with the backend
+    },
+    OnGoogleAuthFail (error) {
+      console.log(error)
     }
-    // OnGoogleAuthFail (error) {
-    //   // console.log(error)
-    // }
   }
 }
 </script>
 
-<style>
-.google-signin-button {
-color: white;
-background-color: red;
-height: 50px;
-font-size: 16px;
-border-radius: 10px;
-padding: 10px 20px 25px 20px;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+<style lang="scss" scoped>
+.login-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 22px;
+  padding: 6.5px 10px;
+  border: 2px solid #435058;
+  background: white;
+  z-index: 1;
+  outline: none;
+  transition: 0.2s;
+  &:hover {
+    background: #848c8e;
+    border: 2px solid #848c8e;
+    color: white;
+  }
+  &:active {
+    background: #435058;
+    border: 2px solid #435058;
+    color: white;
+  }
+  &__logo {
+    width: 15px;
+    padding: 0 8px;
+  }
 }
 </style>
