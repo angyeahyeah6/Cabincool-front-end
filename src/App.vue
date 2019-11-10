@@ -22,6 +22,8 @@ export default {
   font-family: 'Noto Sans TC', Helvetica, Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro",
     "LiHei Pro", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei",
     sans-serif !important;
-  color: #435058;
+}
+navber{
+    display:fixed;
 }
 </style>

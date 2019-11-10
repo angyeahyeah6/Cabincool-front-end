@@ -1,5 +1,5 @@
 <template>
-  <header class="header" v-bind:style="background">
+  <header class="header">
     <div class="search">
       <input
         class="search__input"
@@ -37,6 +37,7 @@ export default {
 <style lang="scss">
 $nav-height: 56px;
 .header {
+  color:white;
   display: flex;
   position: relative;
   justify-content: center;
@@ -45,6 +46,7 @@ $nav-height: 56px;
   height: $nav-height;
   width: 100%;
   padding: 0 100px;
+  padding-bottom: 0;
   background: white;
   box-shadow: 0px 0px 10px #aaa;
   .search {
@@ -96,6 +98,7 @@ $nav-height: 56px;
     line-height: 28px;
     text-decoration: none;
     z-index: 10;
+    color: black;
   }
   .nav {
     display: flex;
@@ -105,6 +108,7 @@ $nav-height: 56px;
     z-index: 1;
 
     a {
+      color: black;
       line-height: $nav-height;
       padding: 0 22px;
       text-decoration: none;
