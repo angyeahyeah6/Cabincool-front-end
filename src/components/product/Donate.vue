@@ -1,5 +1,5 @@
 <template>
-    <div class="donate-background">
+    <div class="donate-container">
         <div class="display-area">
             <h1>累積金額</h1>
             <h1 class=highlight>NT$ 100</h1>
@@ -7,7 +7,7 @@
         <div class="display-area-second">
             <div class="contain-box">
                 <h1>投票額度</h1>
-                <h1 class="highlight"> 1 <img class="login-btn__logo" src="../assets/google-login.png">
+                <h1 class="highlight"> 1 <img class="login-btn__logo" src="../../assets/google-login.png">
                 </h1>
             </div>
             <div>
@@ -26,12 +26,9 @@ export default {
 }
 </script>
 <style lang="scss">
-.donate-background {
+.donate-container {
     height: 420px;
-    width: 370px;;
     float: right;
-    background:#435058;
-    z-index: 2;
     .display-area {
         position: relative;
         top:15%;
@@ -70,7 +67,7 @@ export default {
     display: block;
     height:50px;
     margin-top:20px;
-    width:80%;
+    width: 265px;
     box-shadow: 0px 0px 10px #aaa;
     &:hover {
         background: white;
@@ -87,7 +84,7 @@ export default {
     display: block;
     height:50px;
     margin-top:20px;
-    width:80%;
+    width: 265px;
     box-shadow: 0px 0px 8px #aaa;
     &:hover {
         background: white;

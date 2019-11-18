@@ -19,11 +19,11 @@ export default {
     float: right;
     background:white;
     border: 1px solid #435058;
-    width:290px;
-    margin:80px;
+    width: 265px;
+    height: 464px;
     margin-top:50px;
-    margin-right:95px;
     .add_on_title{
+        font-family: 'Noto Sans TC';
         display:flex;
         .add_on-text{
             margin:20px;
@@ -42,7 +42,7 @@ export default {
     }
     .line{
         border: 0.5px solid #435058;
-        width:290px;
+        width: 265px;
     }
     .add_on_des{
         font-size: 18px;

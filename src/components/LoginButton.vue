@@ -16,7 +16,7 @@ export default {
   }),
   methods: {
     OnGoogleAuthSuccess (idToken) {
-      // Receive the idToken and make your magic with the backend
+      console.log(idToken)
     },
     OnGoogleAuthFail (error) {
       this.$alert(error)
