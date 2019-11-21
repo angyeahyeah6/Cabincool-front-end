@@ -2,15 +2,15 @@
     <div class="question-container">
         <div class="name_container">
           <img src="../../assets/selfie.png">
-          <h1 class="name">{{userName}}</h1>
+          <h1 class="name">{{this.question.userName}}</h1>
           <h2>{{questionTime}}</h2>
-          <h1 class="category"># {{questionCategory}}</h1>
+          <h1 class="category"># {{this.question.questionCategory}}</h1>
         </div>
         <br>
         <div class="title">
-          <h1>{{questionTitle}}</h1>
+          <h1>{{this.question.questionTitle}}</h1>
           <h2>
-            {{questionDescription}}
+            {{this.question.questionDescription}}
           </h2>
         </div>
     </div>
@@ -19,6 +19,11 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  props: {
+    question: {
+      type: Object
+    }
+  },
   data () {
     return {
       questionTime: '2019/02/04  23:52',

@@ -17,7 +17,6 @@ export default {
 </script>
 <style lang="scss">
 .respond-container{
-    width: 888px;
     height: 500px;
     background :white;
     margin-top:50px;

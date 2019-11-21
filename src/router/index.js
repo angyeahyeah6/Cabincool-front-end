@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Product from '../views/Product.vue'
-
+import Propose from '../views/Propose.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -15,6 +15,11 @@ const routes = [
     path: '/product',
     name: 'product',
     component: Product
+  },
+  {
+    path: '/propose',
+    name: 'propose',
+    component: Propose
   }
 ]
 

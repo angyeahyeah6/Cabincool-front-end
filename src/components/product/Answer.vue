@@ -1,26 +1,25 @@
+answerName: '李惟慈',
+        answerOrder: 1,
+        answerTime: '2019/02/04  23:52',
+        answerDetail: '理解"可以 讓我們 控制自己的行為 得以讓我們 所理解的事物/行為可以變得更有效率. 例如說: 我們理解"燃燒過程" 所以我們可以製造機械來控制"燃燒過程" 讓它變得更有效率.',
+        answerLink:
 <template>
   <div class="answer-background">
     <div class="answer-container">
         <div class="ans-name_container">
           <img src="../../assets/selfie.png">
-          <h1 class="ans-name">{{answerName}}</h1>
-          <h1 class="ans-name">#1</h1>
-          <h2>2019/02/04  23:52</h2>
+          <h1 class="ans-name">{{this.answer.answerName}}</h1>
+          <h1 class="ans-name"># {{this.answer.answerOrder}}</h1>
+          <h2>{{this.answer.answerTime}}</h2>
         </div>
         <br>
         <div class="ans-text">
-          <h1 class="detail">
-              理解"可以 讓我們 控制自己的行為 得以讓我們 所理解的事物/行為可以變得更有效率. 例如說: 我們理解"燃燒過程" 所以我們可以製造機械來控制"燃燒過程" 讓它變得更有效率.
-          </h1>
+          <h1 class="detail">{{this.answer.answerDetail}}</h1>
           <h2>
-            <a href = "https://medium.com/py…/inserting-code-in-medium-f1ebed3262e8">
-            https://medium.com/py…/inserting-code-in-medium-f1ebed3262e8
-            </a>
+            <a href="">{{this.answer.answerLink}}</a>
           </h2>
           <h1 class="ans-des">
-              <a>
-                  在文章中嵌入程式的幾個推薦方式
-              </a>
+              <a>{{this.answer.answerDes}}</a>
           </h1>
         </div>
     </div>
@@ -28,13 +27,12 @@
 </template>
 <script>
 export default {
-  name: 'Answer'
-  // props: {
-  //   id: {
-  //     type: Object,
-  //     default: ''
-  //   }
-  // }
+  name: 'Answer',
+  props: {
+    answer: {
+      type: Object
+    }
+  }
 }
 </script>
 

@@ -6,7 +6,8 @@ import '@/assets/reset.css'
 import '@mdi/font/css/materialdesignicons.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
+import PrettyCheckbox from 'pretty-checkbox-vue'
+Vue.use(PrettyCheckbox)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

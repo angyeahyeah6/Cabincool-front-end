@@ -2,18 +2,18 @@
     <div class="donate-container">
         <div class="display-area">
             <h1>累積金額</h1>
-            <h1 class=highlight>NT$ 100</h1>
+            <h1 class=highlight>NT$ {{this.donate.donateAmount}}</h1>
         </div>
         <div class="display-area-second">
             <div class="contain-box">
                 <h1>投票額度</h1>
-                <h1 class="highlight"> 1 <img class="login-btn__logo" src="../../assets/google-login.png">
+                <h1 class="highlight"> {{this.donate.voteAmount}} <img src="../../assets/star.png">
                 </h1>
             </div>
             <div>
                 <div class="contain-box">
                     <h1>剩餘時間</h1>
-                    <h1 class=highlight>5天 10小時</h1>
+                    <h1 class=highlight>{{Math.floor(this.donate.remainTime/24)}}天 {{this.donate.remainTime - 24*Math.floor(this.donate.remainTime/24)}}小時</h1>
                 </div>
             </div>
         </div>
@@ -23,6 +23,11 @@
 </template>
 <script>
 export default {
+  props: {
+    donate: {
+      type: Object
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -43,13 +48,14 @@ export default {
         top:25%;
         display: flex;
         .contain-box{
-            margin-right:20%;
+            padding-right:60px;
             .h1{
                 display: flex;
-                img{
-                    height:30px;
-                    width:30px;
-                }
+                margin-top:10px;
+            }
+            img{
+                height:30px;
+                width:30px;
             }
             .highlight{
                 color: #C6F4F1;

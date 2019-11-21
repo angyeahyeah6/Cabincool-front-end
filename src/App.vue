@@ -16,7 +16,6 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
-
 * {
   font-size: 15px;
   font-family: 'Noto Sans TC', Helvetica, Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro",

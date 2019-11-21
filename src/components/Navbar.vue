@@ -10,12 +10,12 @@
       <span class="search__icon mdi mdi-magnify"></span>
     </div>
     <a
-      href=""
+      href="/"
       class="title"
     >Cabincool</a>
     <ol class="nav">
       <li>
-        <a href="">提問</a>
+        <a href="/propose">提問</a>
       </li>
       <li>
         <a href="/product">探索</a>
