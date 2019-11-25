@@ -18,7 +18,7 @@
         <a href="/propose">提問</a>
       </li>
       <li>
-        <a href="/product">探索</a>
+        <a href="/questionList">探索</a>
       </li>
     </ol>
     <LoginButton></LoginButton>

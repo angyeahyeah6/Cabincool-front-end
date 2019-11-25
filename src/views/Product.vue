@@ -5,7 +5,7 @@
         <Question v-bind:question="question"></Question>
       </el-col>
       <el-col :span="6">
-        <Donate v-bind:donate="donate"></Donate>
+        <Donate v-bind:donate="donate" :qid="question.id"></Donate>
       </el-col>
     </el-row>
     <el-row>
@@ -51,6 +51,7 @@ export default {
         remainTime: 26
       },
       question: {
+        id: 1,
         questionTime: '2019/02/04  23:52',
         questionCategory: '科學',
         questionTitle: '霍金說：「人類大腦可脫離人體而獨立存在..」思維複製到人工智慧上面,碳基生命進化為矽基生命,可行？',

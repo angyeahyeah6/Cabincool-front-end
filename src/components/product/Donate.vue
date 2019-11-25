@@ -17,13 +17,18 @@
                 </div>
             </div>
         </div>
-        <button class="btn_donate">贊助</button>
+        <router-link class="router-link" :to="{ name: 'donate', params: { id: id }}">
+            <button class="btn_donate">贊助</button>
+        </router-link>
         <button class="btn_add-on">附加問題</button>
     </div>
 </template>
 <script>
 export default {
   props: {
+    qid: {
+      type: Number
+    },
     donate: {
       type: Object
     }
