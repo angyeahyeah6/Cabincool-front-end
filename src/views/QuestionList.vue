@@ -20,26 +20,57 @@
     <el-row>
       <div v-for="(question ,x) in filterQuestions" :key="x">
         <router-link class="router-link" :to="{ name: 'product', params: { id: question.id }}">
-        <el-col :span="5" v-if="question.fixed==1">
+        <el-col :span="5" v-if="question.fixed==true && x % 4 === 0">
           <div class="single-question">
             <h1 class="category"># {{question.category}}</h1>
-            <h1 class="questionTitle">{{question.title}}</h1>
+            <h1 v-if="question.title<40" class="questionTitle">{{question.title}}</h1>
+            <h1 v-else class="questionTitle">{{question.title.substring(0,40)}} ...</h1>
+            <div class="toBottom">
+            <h1 class="name">{{question.name}}</h1>
+            <h1 class="name">{{question.time}}</h1>
+            <div class="line"></div>
+              <h1>最佳解答</h1>
+              <h1>{{question.preView}}</h1>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="5" :offset="1" v-else-if="question.fixed===true && x % 4 !== 0">
+          <div class="single-question">
+            <h1 class="category"># {{question.category}}</h1>
+            <h1 v-if="question.title<40" class="questionTitle">{{question.title}}</h1>
+            <h1 v-else class="questionTitle">{{question.title.substring(0,40)}} ...</h1>
+            <div class="toBottom">
             <h1 class="name">{{question.name}}</h1>
             <h1 class="name">{{question.time}}</h1>
             <div class="line"></div>
             <h1>最佳解答</h1>
-            <h1>{{question.preView}}</h1>
+            <h1 v-if="question.preView<15">{{question.preView}}</h1>
+            <h1 v-else>{{question.preView.substring(0,15)}}</h1>
+            </div>
           </div>
         </el-col>
-        <el-col :span="5" v-else>
+        <el-col :span="5" v-else-if="question.fixed===false && x % 4 === 0">
           <div class="single-question">
             <h1 class="category"># {{question.category}}</h1>
-            <h1 class="questionTitle">{{question.title}}</h1>
+            <h1 v-if="question.title<40" class="questionTitle">{{question.title}}</h1>
+            <h1 v-else class="questionTitle">{{question.title.substring(0,40)}} ...</h1>
+            <div class="toBottom">
             <h1 class="name">{{question.name}}</h1>
             <span><h1>NT {{question.amount}}</h1><h1 class="name">{{ question.time }}</h1></span>
+            </div>
           </div>
         </el-col>
-        <el-col :span="1"></el-col>
+        <el-col :span="5" :offset="1" v-else>
+          <div class="single-question">
+            <h1 class="category"># {{question.category}}</h1>
+            <h1 v-if="question.title<40" class="questionTitle">{{question.title}}</h1>
+            <h1 v-else class="questionTitle">{{question.title.substring(0,40)}} ...</h1>
+            <div class="toBottom">
+            <h1 class="name">{{question.name}}</h1>
+            <span><h1>NT {{question.amount}}</h1><h1 class="name">{{ question.time }}</h1></span>
+            </div>
+          </div>
+        </el-col>
         </router-link>
       </div>
     </el-row>
@@ -118,6 +149,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.toBottom{
+  margin-top: 50%;
+  bottom: 0;
+}
 .header {
     color: #435058 !important;
 }

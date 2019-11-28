@@ -6,7 +6,7 @@
         </div>
         <div class="display-area-second">
             <div class="contain-box">
-                <h1>投票額度</h1>
+                <h1 style="width: 150%;">投票額度</h1>
                 <h1 class="highlight"> {{this.donate.voteAmount}} <img src="../../assets/star.png">
                 </h1>
             </div>
@@ -59,8 +59,8 @@ export default {
                 margin-top:10px;
             }
             img{
-                height:30px;
-                width:30px;
+                height:25px;
+                width:25px;
             }
             .highlight{
                 color: #C6F4F1;

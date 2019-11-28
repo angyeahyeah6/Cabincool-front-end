@@ -3,8 +3,9 @@
     使用<img
       class="login-btn__logo"
       src="../assets/google-login.png"
-    >登入</button>
+    >登入 {{this.test}}</button>
 </template>
+
 <script>
 import GoogleSignInButton from 'vue-google-signin-button-directive'
 export default {
@@ -12,11 +13,12 @@ export default {
     GoogleSignInButton
   },
   data: () => ({
-    clientId: '149578749039-8ki9dmmfnod66fl59hd6mduedr3rvre3.apps.googleusercontent.com'
+    clientId: '149578749039-8ki9dmmfnod66fl59hd6mduedr3rvre3.apps.googleusercontent.com',
+    test: ''
   }),
   methods: {
     OnGoogleAuthSuccess (idToken) {
-      console.log(idToken)
+      this.test = idToken
     },
     OnGoogleAuthFail (error) {
       this.$alert(error)
