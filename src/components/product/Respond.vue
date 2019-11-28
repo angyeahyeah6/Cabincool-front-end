@@ -9,9 +9,7 @@
         </div>
         <div class="web-link">
             <input type="text" placeholder="  網址" style="height:25%;">
-            <router-link class="router-link" :to="{ name: 'product', params: { id: qid }}">
-              <button class="submit-button-1" style="float:right; margin-right:20px;" @click="reload">傳送</button>
-            </router-link>
+            <button class="submit-button-1" style="float:right; margin-right:20px;" @click="reload">傳送</button>
         </div>
     </div>
 </template>

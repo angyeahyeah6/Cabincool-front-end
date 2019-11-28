@@ -9,7 +9,17 @@ import GAuth from 'vue-google-oauth2'
 import 'element-ui/lib/theme-chalk/index.css'
 import PrettyCheckbox from 'pretty-checkbox-vue'
 import VModal from 'vue-js-modal'
-
+import firebase from 'firebase'
+Vue.config.productionTip = false
+const config = {
+  apiKey: '',
+  authDomain: 'wasay.site',
+  databasrURL: '',
+  projectID: '149578749039-8ki9dmmfnod66fl59hd6mduedr3rvre3.apps.googleusercontent.com',
+  storageBucket: '',
+  messagingSenderId: ''
+}
+firebase.initializeApp(config)
 const AuthOption = {
   clientId: '149578749039-8ki9dmmfnod66fl59hd6mduedr3rvre3.apps.googleusercontent.com',
   scope: 'profile email',

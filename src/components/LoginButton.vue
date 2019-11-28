@@ -8,8 +8,8 @@
 
 <script>
 // import Vuex from 'vuex'
-import firebase from 'firebase/auth'
-// import { url } from '../url'
+import firebase from 'firebase'
+import { url } from '../url'
 export default {
   data: () => ({
   }),
@@ -25,8 +25,9 @@ export default {
     //     })
     // }
     signin () {
+      console.log('inside')
       firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
-        fetch('wasay.site/api/login', {
+        fetch(url + 'api/login', {
           method: 'post',
           body: JSON.stringify({
             'idToken': idToken
