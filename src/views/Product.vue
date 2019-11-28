@@ -105,6 +105,9 @@ export default {
     margin-bottom: 0;
   }
 }
+.question-container .title h1 {
+  font-family: 'Noto Serif TC', serif !important;
+}
 .el-col {
   border-radius: 4px;
 }

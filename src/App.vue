@@ -22,6 +22,7 @@ export default {
     "LiHei Pro", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei",
     sans-serif !important;
 }
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
 navber{
     display:fixed;
 }

@@ -34,7 +34,7 @@
                             <h1 class="title-2" style="margin-top: 75px;">投票機制</h1>
                             <p-radio class="p-default p-round p-thick" name="time">第一名獨得</p-radio><br>
                             <p-radio class="p-default p-round p-thick" name="time">依 <img class="in-line" src="../assets/star.png"> 比例分配</p-radio><br>
-                            <p-check class="p-switch p-default">允許訪客擁有1 <img class="in-line" src="../assets/star.png"> 投票權</p-check>
+                            <p-check class="p-switch p-slim">允許訪客擁有1 <img class="in-line" src="../assets/star.png"> 投票權</p-check>
                         </div>
                         <div class="filling-area" style="margin-top:50px;">
                             <h1 class="title-2" style="display: inline; margin-right: 30px;">您要投</h1>
