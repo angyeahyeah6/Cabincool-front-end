@@ -78,22 +78,42 @@
 </template>
 
 <script>
-
+import { url } from '../url'
+import { mapState } from 'vuex'
 export default {
   name: 'questionList',
   isHot: false,
   isNew: false,
-  computed: {
-    dateParser: function (dt) {
-      var DD = ('0' + dt.getDate()).slice(-2)
-      var MM = ('0' + (dt.getMonth() + 1)).slice(-2)
-      var YYYY = dt.getFullYear()
-      var hh = ('0' + dt.getHours()).slice(-2)
-      var mm = ('0' + dt.getMinutes()).slice(-2)
-      var ss = ('0' + dt.getSeconds()).slice(-2)
-      var dateString = YYYY + '-' + MM + '-' + DD + ' ' + hh + ':' + mm + ':' + ss
-      return (dateString)
+  mounted: function () {
+    this.getQuestion()
+  },
+  method: {
+    getQuestion () {
+      fetch(url + '/api/questions', {
+        method: 'get',
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        })
+      }).then(data => data.json().data)
+        .then((data) => { this.questions = data })
     }
+  },
+  computed: {
+    ...mapState({
+      userName: state => state.userName,
+      token: state => state.token
+    })
+    // dateParser: function (dt) {
+    //   var DD = ('0' + dt.getDate()).slice(-2)
+    //   var MM = ('0' + (dt.getMonth() + 1)).slice(-2)
+    //   var YYYY = dt.getFullYear()
+    //   var hh = ('0' + dt.getHours()).slice(-2)
+    //   var mm = ('0' + dt.getMinutes()).slice(-2)
+    //   var ss = ('0' + dt.getSeconds()).slice(-2)
+    //   var dateString = YYYY + '-' + MM + '-' + DD + ' ' + hh + ':' + mm + ':' + ss
+    //   return (dateString)
+    // }
   },
   data () {
     return {

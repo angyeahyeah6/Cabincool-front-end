@@ -82,6 +82,20 @@ export default {
     }
   },
   methods: {
+    mounted: {
+
+    },
+    // method: {
+    // getSingle(){
+    //   fetch(url + 'api/login', {
+    //       method: 'post',
+    //       body: JSON.stringify({
+    //         'idToken': idToken
+    //       })
+    //     })
+    //       .then(data => data)
+    //   }
+    // },
     show () {
       this.$modal.show('hello-world')
     }
