@@ -9,7 +9,7 @@
 <script>
 // import Vuex from 'vuex'
 import firebase from 'firebase/auth'
-import { url } from '../url'
+// import { url } from '../url'
 export default {
   data: () => ({
   }),
@@ -26,7 +26,7 @@ export default {
     // }
     signin () {
       firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
-        fetch(url + '/api/login', {
+        fetch('/api/login', {
           method: 'post',
           body: JSON.stringify({
             'idToken': idToken
