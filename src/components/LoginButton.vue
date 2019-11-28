@@ -1,5 +1,8 @@
 <template>
-  <button @click="signin" class="login-btn">
+  <button
+    @click="signin"
+    class="login-btn"
+  >
     使用<img
       class="login-btn__logo"
       src="../assets/google-login.png"
@@ -31,33 +34,36 @@ export default {
       firebase.auth().signInWithPopup(provider).then(function (result) {
         console.log(result.credential)
         if (result.credential) {
-          var token = result.credential.idToken
-          fetch(url + 'api/login', {
-            method: 'post',
-            body: JSON.stringify({
-              'idToken': token
-            }),
-            headers: new Headers({
-              'Content-Type': 'application/json'
-            })
-          }).then(data =>
-            fetch(url + 'api/users/info', {
+          firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+            fetch(url + 'api/login', {
               method: 'post',
+              body: JSON.stringify({
+                'idToken': idToken
+              }),
               headers: new Headers({
-                'Authorization': 'Bearer ' + data.json().data.token,
                 'Content-Type': 'application/json'
               })
-            }).catch(
-              function (error) {
-                alert(error.code)
-              }
-            ).then(data => data.json().data)
-              .then((data) => {
-                localStorage.setItem('userName', data.userName)
-                localStorage.setItem('photo', data.profilePhoto)
-                localStorage.setItem('token', data.token)
-              })
-          )
+            }).then(data =>
+              fetch(url + 'api/users/info', {
+                method: 'post',
+                headers: new Headers({
+                  'Authorization': 'Bearer ' + data.json().data.token,
+                  'Content-Type': 'application/json'
+                })
+              }).catch(
+                function (error) {
+                  alert(error.code)
+                }
+              ).then(data => data.json().data)
+                .then((data) => {
+                  localStorage.setItem('userName', data.userName)
+                  localStorage.setItem('photo', data.profilePhoto)
+                  localStorage.setItem('token', data.token)
+                })
+            )
+          }).catch(function (error) {
+            console.log(error)
+          })
         }
       })
     }
@@ -88,7 +94,7 @@ export default {
   z-index: 1;
   outline: none;
   transition: 0.2s;
-  color:black !important;
+  color: black !important;
   &:hover {
     background: #848c8e;
     border: 2px solid #848c8e;
