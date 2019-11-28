@@ -194,7 +194,7 @@ export default {
   color: #435058 !important;
 }
 ol{
-    font-family: 'Noto Sans TC';
+    font-family: 'Noto Serif TC';
     padding: 20px;
     text-align: center;
     align-self: center;
@@ -209,6 +209,9 @@ ol li{
         color: #07BAC5;
         cursor: pointer;
     }
+}
+.single-question .questionTitle{
+  font-family: 'Noto Serif TC' !important;
 }
 .el-row {
   padding-left: 100px;
