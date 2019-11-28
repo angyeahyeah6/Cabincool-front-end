@@ -32,10 +32,18 @@ export default {
             'idToken': idToken
           })
         })
-          .then(data => data.json())
-      }).catch(function (error) {
-        alert(error)
+          .then(data =>
+            fetch('/api/users/info', {
+              method: 'post',
+              headers: new Headers({
+                'Authorization': 'Bearer ' + data.json().data,
+                'Content-Type': 'application/json'
+              }) })
+          )
       })
+        .catch(function (error) {
+          alert(error)
+        })
     }
   }
 }
