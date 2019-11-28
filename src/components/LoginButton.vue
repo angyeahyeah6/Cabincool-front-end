@@ -1,27 +1,41 @@
 <template>
-  <button v-google-signin-button="clientId" class="login-btn">
+  <button @click="signin" class="login-btn">
     使用<img
       class="login-btn__logo"
       src="../assets/google-login.png"
-    >登入 {{this.test}}</button>
+    >登入</button>
 </template>
 
 <script>
-import GoogleSignInButton from 'vue-google-signin-button-directive'
+// import Vuex from 'vuex'
+import firebase from 'firebase/auth'
+import { url } from '../url'
 export default {
-  directives: {
-    GoogleSignInButton
-  },
   data: () => ({
-    clientId: '149578749039-8ki9dmmfnod66fl59hd6mduedr3rvre3.apps.googleusercontent.com',
-    test: ''
   }),
   methods: {
-    OnGoogleAuthSuccess (idToken) {
-      this.test = idToken
-    },
-    OnGoogleAuthFail (error) {
-      this.$alert(error)
+    // signin () {
+    //   this.$gAuth
+    //     .signIn()
+    //     .then(GoogleUser => {
+    //       console.log(GoogleUser)
+    //     })
+    //     .catch(err => {
+    //       console.error(err)
+    //     })
+    // }
+    signin () {
+      firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
+        fetch(url + '/api/login', {
+          method: 'post',
+          body: JSON.stringify({
+            'idToken': idToken
+          })
+        })
+          .then(data => data.json())
+      }).catch(function (error) {
+        alert(error)
+      })
     }
   }
 }

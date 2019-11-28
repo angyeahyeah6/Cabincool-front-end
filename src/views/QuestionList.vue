@@ -90,7 +90,6 @@ export default {
       var mm = ('0' + dt.getMinutes()).slice(-2)
       var ss = ('0' + dt.getSeconds()).slice(-2)
       var dateString = YYYY + '-' + MM + '-' + DD + ' ' + hh + ':' + mm + ':' + ss
-      console.log(dateString)
       return (dateString)
     }
   },

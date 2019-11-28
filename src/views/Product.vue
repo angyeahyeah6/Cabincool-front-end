@@ -32,6 +32,9 @@ import AddOn from '../components/product/AddOn'
 import Respond from '../components/product/Respond'
 export default {
   name: 'product',
+  mounted () {
+    this.show()
+  },
   components: {
     Answer,
     Question,
@@ -74,6 +77,11 @@ export default {
         answerLink: 'https://medium.com/py…/inserting-code-in-medium-f1ebed3262e8',
         answerDes: '在文章中嵌入程式的幾個推薦方式'
       }]
+    }
+  },
+  methods: {
+    show () {
+      this.$modal.show('hello-world')
     }
   }
 }

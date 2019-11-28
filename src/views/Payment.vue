@@ -55,7 +55,6 @@ export default {
   },
   watch: {
     inputCheck: function (newAmount, oldAmount) {
-      console.log('in')
       if (newAmount !== '') { this.inputBackground = '#C6F4F1' } else { this.inputBackground = '#FBFBFB' }
     }
   }
