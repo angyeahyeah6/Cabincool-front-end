@@ -40,7 +40,9 @@ const routes = [
     component: Payment
   }
 ]
-
+// router.beforeEach((to, from, next) => {
+//   const currentUser = firebase.auth().currentUser;
+// }
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

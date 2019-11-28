@@ -1,1 +1,1 @@
-export const url = 'wasay.site/'
+export const url = 'https://wasay.site/'

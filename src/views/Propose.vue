@@ -5,26 +5,26 @@
                 <div class="filling-area">
                     <h1 class="title-1">提問</h1>
                     <h1 class="title-2">問題標題</h1>
-                    <input type="text">
+                    <input v-model="data.title" type="text" >
                     <h1 class="title-2">問題分類</h1>
-                    <select>
+                    <select @change="handleChange">
                         <option value="社會"> - </option>
                         <option value="社會">社會</option>
-                        <option value="社會">科學</option>
-                        <option value="社會">科技</option>
-                        <option value="社會">商業</option>
-                        <option value="社會">健康</option>
-                        <option value="社會">設計</option>
-                        <option value="社會">其他</option>
+                        <option value="科學">科學</option>
+                        <option value="科技">科技</option>
+                        <option value="商業">商業</option>
+                        <option value="健康">健康</option>
+                        <option value="設計">設計</option>
+                        <option value="其他">其他</option>
                     </select>
                     <h1 class="title-2">發問期間</h1>
                     <div style="margin-bottom: 10px; display: block;">
-                        <p-radio class="p-default p-round p-thick" name="time">一週</p-radio><br>
-                        <p-radio class="p-default p-round p-thick" name="time">雙週</p-radio><br>
-                        <p-radio class="p-default p-round p-thick" name="time">一個月</p-radio>
+                        <p-radio v-model="data.remainTime" value="week" class="p-default p-round p-thick" name="time">一週</p-radio><br>
+                        <p-radio v-model="data.remainTime" value="twiceWeek" class="p-default p-round p-thick" name="time">雙週</p-radio><br>
+                        <p-radio v-model="data.remainTime" value="month" class="p-default p-round p-thick" name="time">一個月</p-radio>
                     </div>
                     <h1 class="title-2">問題內容</h1>
-                    <input type="class" style="height: 150px;">
+                    <input v-model="data.description" type="class" style="height: 150px;">
                 </div>
             </el-col>
             <el-col :span="12" :offset="2">
@@ -32,9 +32,9 @@
                     <el-col :span="16">
                         <div class="filling-area">
                             <h1 class="title-2" style="margin-top: 75px;">投票機制</h1>
-                            <p-radio class="p-default p-round p-thick" name="time">第一名獨得</p-radio><br>
-                            <p-radio class="p-default p-round p-thick" name="time">依 <img class="in-line" src="../assets/star.png"> 比例分配</p-radio><br>
-                            <p-check class="p-switch p-slim">允許訪客擁有1 <img class="in-line" src="../assets/star.png"> 投票權</p-check>
+                            <p-radio v-model="data.winRule" value=false class="p-default p-round p-thick" name="time">第一名獨得</p-radio><br>
+                            <p-radio v-model="data.winRule" value=true class="p-default p-round p-thick" name="time">依 <img class="in-line" src="../assets/star.png"> 比例分配</p-radio><br>
+                            <p-check v-model="data.haveBasicVote" class="p-switch p-default">允許訪客擁有1 <img class="in-line" src="../assets/star.png"> 投票權</p-check>
                         </div>
                         <div class="filling-area" style="margin-top:50px;">
                             <h1 class="title-2" style="display: inline; margin-right: 30px;">您要投</h1>
@@ -64,9 +64,9 @@
                 <el-row>
                     <el-col :span="24">
                         <router-link class="router-link" :to="{ name: 'payment'}">
-                        <button class="submit-button" style="background: #435058; color:white;">下一步</button>
+                        <button @click="makeQuestion" class="submit-button" style="background: #435058; color:white;">下一步</button>
                         </router-link>
-                        <button class="submit-button">儲存草稿</button>
+                        <button class="submit-button" hidden>儲存草稿</button>
                     </el-col>
                 </el-row>
             </el-col>
@@ -74,20 +74,66 @@
     </el-row>
 </template>
 <script>
+import { url } from '../url'
 export default {
   data () {
     return {
       inputAmount: '',
-      starAmount: 0
+      starAmount: 0,
+      data: {
+        title: '',
+        category: '',
+        remainTime: '',
+        description: '',
+        winRule: '',
+        haveBasicVote: false,
+        voteAmmount: '',
+        startAmount: ''
+      }
+    }
+  },
+  methods: {
+    handleChange (e) {
+    //   console.log(this.data.remainTime)
+      if (e.target.options.selectedIndex > -1) {
+        this.data.category = e.target.options[e.target.options.selectedIndex].value
+      }
+      console.log(this.data.title)
+      console.log(this.data)
+    },
+    makeQuestion () {
+      fetch(url + '/api/questions', {
+        method: 'post',
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }),
+        body: this.data
+      }).then(data => data.json().data)
+        .then((data) => {
+          for (var i; i <= data.length; i++) {
+            fetch(url + '/api/questions' + data[i], {
+              method: 'post'
+            })
+          }
+        })
     }
   },
   watch: {
     inputAmount: function (newAmount, oldAmount) {
       this.starAmount = this.inputAmount / 5
+      this.data.voteAmmount = this.inputAmount
+      this.data.startAmount = this.inputAmount / 5
     }
-  },
-  addEvent ({ type, target }) {
-    this.inputAmount = target.value
+    // title: function (newAmount, oldAmount) {
+    //   this.data.title = newAmount
+    //   console.log(this.data.title)
+    // },
+    // remainTime: function () {
+    //   console.log(this.remainTime)
+    //   //   this.data.remainTime = e.target
+    //   console.log(this.data.remainTime)
+    // }
   }
 }
 </script>
