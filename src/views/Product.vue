@@ -13,7 +13,7 @@
         <div v-for="(answer ,x) in answers" :key="x">
           <Answer v-bind:answer="answer"></Answer>
         </div>
-        <Respond v-bind:profile="profile"></Respond>
+        <Respond></Respond>
       </el-col>
       <el-col :span="6">
         <div v-for="(addOn ,x) in addOns" :key="x">
@@ -67,7 +67,8 @@ export default {
         answerTime: '2019/02/04  23:52',
         answerDetail: '理解"可以 讓我們 控制自己的行為 得以讓我們 所理解的事物/行為可以變得更有效率. 例如說: 我們理解"燃燒過程" 所以我們可以製造機械來控制"燃燒過程" 讓它變得更有效率.',
         answerLink: 'https://medium.com/py…/inserting-code-in-medium-f1ebed3262e8',
-        answerDes: '在文章中嵌入程式的幾個推薦方式'
+        answerDes: '在文章中嵌入程式的幾個推薦方式',
+        toQuestion: 1
       },
       {
         answerName: '陳怡蓁',
@@ -75,7 +76,8 @@ export default {
         answerTime: '2019/02/05  10:02',
         answerDetail: '理解"可以 讓我們 控制自己的行為 得以讓我們 所理解的事物/行為可以變得更有效率. 例如說: 我們理解"燃燒過程" 所以我們可以製造機械來控制"燃燒過程" 讓它變得更有效率.',
         answerLink: 'https://medium.com/py…/inserting-code-in-medium-f1ebed3262e8',
-        answerDes: '在文章中嵌入程式的幾個推薦方式'
+        answerDes: '在文章中嵌入程式的幾個推薦方式',
+        toQuestion: 1
       }]
     }
   },

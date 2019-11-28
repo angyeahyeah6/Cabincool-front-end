@@ -35,10 +35,10 @@
             <div class="pay-container" style="padding:80px;">
                 <h1 class="title-2" style="text-algin:center; margin-bottom: 50px;">請至ibon機臺輸入代碼，產生繳費單後至櫃檯繳費</h1>
                 <h1 class="title-2">ibon代碼</h1>
-                <input type="text" class="input-1">
+                <input type="text" class="input-2" value="LLL123 456 789 999" disabled>
                 <h1 class="title-2" style="margin-top:20px;">繳費期限</h1>
-                <input type="text" class="input-1">
-                <router-link class="router-link" :to="{ name: 'home'}">
+                <input type="text" class="input-2" value="2019-11-14" disabled>
+                <router-link class="router-link" :to="{ name: 'questionList'}">
                 <button class="submit-button-1" style="margin-top:30px;">下一步</button>
                 </router-link>
             </div>
@@ -85,6 +85,21 @@ export default {
     padding:100px;
     margin-top: -50px;
 
+}
+.input-2{
+    padding: 10px;
+    margin-bottom: 5%;
+    width: 100%;
+    height:25px;
+    background: #C6F4F1;
+    outline: none;
+    border: transparent;
+    &:focus{
+        background: white;
+    }
+    // &:valid{
+    //   background: #C6F4F1;
+    // }
 }
 .input-1{
     margin-bottom: 5%;

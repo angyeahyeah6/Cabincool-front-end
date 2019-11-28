@@ -26,14 +26,14 @@ export default {
     // }
     signin () {
       firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
-        fetch('/api/login', {
+        fetch('wasay.site/api/login', {
           method: 'post',
           body: JSON.stringify({
             'idToken': idToken
           })
         })
           .then(data =>
-            fetch('/api/users/info', {
+            fetch('wasay.site/api/users/info', {
               method: 'post',
               headers: new Headers({
                 'Authorization': 'Bearer ' + data.json().data,

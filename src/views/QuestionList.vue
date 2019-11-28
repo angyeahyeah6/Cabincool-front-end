@@ -2,19 +2,19 @@
   <div>
     <el-row class="menu">
       <ol>
-        <li @click="displayCategory('社會')">社會</li>
-        <li @click="displayCategory('商業')">商業</li>
-        <li @click="displayCategory('科技')">科技</li>
-        <li @click="displayCategory('科學')">科學</li>
-        <li @click="displayCategory('健康')">健康</li>
-        <li @click="displayCategory('設計')">設計</li>
-        <li @click="displayCategory('其他')">其他</li>
+        <li @click="displayCategory('社會')" :class="{choose:isActive[0]}">社會</li>
+        <li @click="displayCategory('商業')" :class="{choose:isActive[1]}">商業</li>
+        <li @click="displayCategory('科技')" :class="{choose:isActive[2]}">科技</li>
+        <li @click="displayCategory('科學')" :class="{choose:isActive[3]}">科學</li>
+        <li @click="displayCategory('健康')" :class="{choose:isActive[4]}">健康</li>
+        <li @click="displayCategory('設計')" :class="{choose:isActive[5]}">設計</li>
+        <li @click="displayCategory('其他')" :class="{choose:isActive[6]}">其他</li>
       </ol>
     </el-row>
     <el-row>
       <ol class="menu_2">
-        <li @click="filterHot()">熱門</li>
-        <li @click="filterNew()">最新</li>
+        <li @click="filterHot()" :class="{choose:isHot}">熱門</li>
+        <li @click="filterNew()" :class="{choose:isnew}">最新</li>
       </ol>
     </el-row>
     <el-row>
@@ -26,12 +26,12 @@
             <h1 v-if="question.title<40" class="questionTitle">{{question.title}}</h1>
             <h1 v-else class="questionTitle">{{question.title.substring(0,40)}} ...</h1>
             <div class="toBottom">
-            <h1 class="name">{{question.name}}</h1>
-            <h1 class="name">{{question.time}}</h1>
-            <div class="line"></div>
-              <h1>最佳解答</h1>
-              <h1>{{question.preView}}</h1>
-            </div>
+              <h1 class="name">{{question.name}}</h1>
+              <h1 class="name">{{question.time}}</h1>
+              <div class="line"></div>
+                <h1>最佳解答</h1>
+                <h1>{{question.preView}}</h1>
+              </div>
           </div>
         </el-col>
         <el-col :span="5" :offset="1" v-else-if="question.fixed===true && x % 4 !== 0">
@@ -81,6 +81,8 @@
 
 export default {
   name: 'questionList',
+  isHot: false,
+  isNew: false,
   computed: {
     dateParser: function (dt) {
       var DD = ('0' + dt.getDate()).slice(-2)
@@ -95,6 +97,7 @@ export default {
   },
   data () {
     return {
+      isActive: [ false, false, false, false, false, false, false ],
       questions: [{
         id: 1,
         fixed: true,
@@ -129,6 +132,10 @@ export default {
           this.filterQuestions.push(this.questions[i])
         }
       }
+      for (var l = 0; l < this.isActive.length; l++) {
+        this.isActive[l] = false
+      }
+      this.isActive[['社會', '商業', '科技', '科學', '健康', '設計', '其他'].indexOf(filterCate)] = true
     },
     filterNew: function () {
       this.filterQuestions.sort(
@@ -136,6 +143,8 @@ export default {
           return b.time - a.time
         }
       )
+      this.isHot = false
+      this.isNew = true
     },
     filterHot: function () {
       this.filterQuestions.sort(
@@ -143,14 +152,20 @@ export default {
           return b.clickCount - a.clickCount
         }
       )
+      this.isNew = false
+      this.isHot = true
     }
   }
 }
 </script>
 <style lang="scss">
+.choose{
+  color: #07BAC5;
+}
 .toBottom{
-  margin-top: 50%;
+  // margin-top: 50%;
   bottom: 0;
+  align-self: end;
 }
 .header {
     color: #435058 !important;
