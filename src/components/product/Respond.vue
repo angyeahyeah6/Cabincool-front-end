@@ -2,20 +2,31 @@
     <div class="respond-container">
         <div class="black-header">
             <img src="../../assets/selfie.png">
+            <h1>{{userName}}</h1>
         </div>
         <div class="description">
             <input type="text" placeholder="說明">
         </div>
         <div class="web-link">
-            <input type="text" placeholder="網址">
+            <input type="text" placeholder="網址" style="height:25%;">
+            <button class="submit-button-1" style="float:right; margin-right:20px;">傳送</button>
         </div>
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
+  computed: {
+    ...mapState({
+      userName: state => state.userName
+    })
+  }
 }
 </script>
 <style lang="scss">
+input{
+  outline: none;
+}
 .respond-container{
     height: 500px;
     background :white;
@@ -30,6 +41,12 @@ export default {
             width: 45px;
             height: 45px;
             border-radius: 50%;
+            display: inline;
+        }
+        h1{
+            display: inline;
+            color: white;
+            vertical-align: 30px;
         }
     }
     .description{

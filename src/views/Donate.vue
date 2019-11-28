@@ -8,6 +8,8 @@
                 <div class="do-display-text-container">
                   <h1 class="title-2" style="display: inline;">累積金額</h1>
                   <h1 class="title-2" style="display: inline; margin: 20px;">NT$ {{grandTotal}}</h1>
+                  <h1 v-if="singleGet == true" class="title-2" style="display: inline; margin: 20px; font-size: 14px;">第一名獨得</h1>
+                  <h1 v-else></h1>
                 </div>
                 <div class="do-display-text-container">
                   <h1 class="title-2" style="display: inline;">剩餘時間</h1>
@@ -24,7 +26,9 @@
                 <input v-model="inputAmount" type="number" class="money-input" autofocus>
                 <h1 class="title-2" style="margin-left: 90px;">= {{starAmount}} <img class="in-line" src="../assets/star_dark.png"></h1>
              </div>
-             <button class="next-button" style="background: #435058; color:white;">下一步</button>
+             <router-link class="router-link" :to="{ name: 'payment'}">
+              <button class="next-button" style="background: #435058; color:white;">下一步</button>
+             </router-link>
             </el-col>
         </el-row>
     </div>
@@ -37,7 +41,8 @@ export default {
       grandTotal: 100,
       remainTime: 130,
       inputAmount: '',
-      starAmount: 5
+      starAmount: 5,
+      singleGet: true
     }
   },
   watch: {

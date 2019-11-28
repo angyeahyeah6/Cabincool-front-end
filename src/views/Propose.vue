@@ -63,7 +63,9 @@
                 </el-row>
                 <el-row>
                     <el-col :span="24">
+                        <router-link class="router-link" :to="{ name: 'payment'}">
                         <button class="submit-button" style="background: #435058; color:white;">下一步</button>
+                        </router-link>
                         <button class="submit-button">儲存草稿</button>
                     </el-col>
                 </el-row>

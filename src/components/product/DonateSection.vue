@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <router-link class="router-link" :to="{ name: 'donate', params: { id: id }}">
+        <router-link class="router-link" :to="{ name: 'donate', params: { id: qid }}">
             <button class="btn_donate">贊助</button>
         </router-link>
         <button class="btn_add-on">附加問題</button>

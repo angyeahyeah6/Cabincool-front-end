@@ -5,6 +5,7 @@ import Product from '../views/Product.vue'
 import Propose from '../views/Propose.vue'
 import QuestionList from '../views/QuestionList.vue'
 import Donate from '../views/Donate.vue'
+import Payment from '../views/Payment.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -32,6 +33,11 @@ const routes = [
     path: '/donate/:id',
     name: 'donate',
     component: Donate
+  },
+  {
+    path: '/payment',
+    name: 'payment',
+    component: Payment
   }
 ]
 

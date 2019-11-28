@@ -4,7 +4,7 @@
       <el-col :span="18">
         <Question v-bind:question="question"></Question>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="5" :offset="1">
         <Donate v-bind:donate="donate" :qid="question.id"></Donate>
       </el-col>
     </el-row>
@@ -13,7 +13,7 @@
         <div v-for="(answer ,x) in answers" :key="x">
           <Answer v-bind:answer="answer"></Answer>
         </div>
-        <Respond></Respond>
+        <Respond v-bind:profile="profile"></Respond>
       </el-col>
       <el-col :span="6">
         <div v-for="(addOn ,x) in addOns" :key="x">
@@ -27,7 +27,7 @@
 <script>
 import Answer from '../components/product/Answer'
 import Question from '../components/product/Question'
-import Donate from '../components/product/Donate'
+import Donate from '../components/product/DonateSection'
 import AddOn from '../components/product/AddOn'
 import Respond from '../components/product/Respond'
 export default {
@@ -52,6 +52,7 @@ export default {
       },
       question: {
         id: 1,
+        questionOwner: '李惟慈',
         questionTime: '2019/02/04  23:52',
         questionCategory: '科學',
         questionTitle: '霍金說：「人類大腦可脫離人體而獨立存在..」思維複製到人工智慧上面,碳基生命進化為矽基生命,可行？',
