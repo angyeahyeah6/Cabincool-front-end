@@ -19,7 +19,7 @@
     </el-row>
     <el-row>
       <div v-for="(question ,x) in filterQuestions" :key="x">
-        <router-link class="router-link" :to="{ name: 'product', params: { id: question.id }}">
+        <router-link @click="saveQId(question.id)" class="router-link" :to="{ name: 'product', params: { id: question.id }}">
         <el-col :span="5" v-if="question.fixed==true && x % 4 === 0">
           <div class="single-question">
             <h1 class="category"># {{question.category}}</h1>
@@ -84,20 +84,21 @@ export default {
   name: 'questionList',
   isHot: false,
   isNew: false,
-  mounted: function () {
-    this.getQuestion()
-  },
   method: {
-    getQuestion () {
-      fetch(url + '/api/questions', {
-        method: 'get',
-        headers: new Headers({
-          'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          'Content-Type': 'application/json'
-        })
-      }).then(data => data.json().data)
-        .then((data) => { this.questions = data })
+    saveQId (id) {
+      localStorage.setItem('questionId', id)
+      console.log(id)
     }
+  },
+  mounted () {
+    fetch(url + '/api/questions', {
+      method: 'get',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      })
+    }).then(data => data.json().data)
+      .then((data) => { this.questions = data })
   },
   computed: {
     ...mapState({

@@ -18,14 +18,31 @@
 
 <script>
 // import { mapState } from 'vuex'
+import { url } from '../../url'
 export default {
   props: {
     question: {
       type: Object
     }
   },
+  mounted: {
+
+  },
   data () {
     return {
+    }
+  },
+  method: {
+    getSinQues () {
+      fetch(url + '/api/questions/' + this.question.id, {
+        method: 'get',
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        })
+      }).then((data) => {
+
+      })
     }
   }
   // computed: {

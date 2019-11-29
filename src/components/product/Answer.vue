@@ -1,51 +1,67 @@
-answerName: '李惟慈',
-        answerOrder: 1,
-        answerTime: '2019/02/04  23:52',
-        answerDetail: '理解"可以 讓我們 控制自己的行為 得以讓我們 所理解的事物/行為可以變得更有效率. 例如說: 我們理解"燃燒過程" 所以我們可以製造機械來控制"燃燒過程" 讓它變得更有效率.',
-        answerLink:
 <template>
   <div class="answer-background">
+    <div style="display: block;">
+    <img src="../../assets/star.png" class="voteStar" @click="addStar">
+    <h1 class="voteNum">{{this.answer.starAmount}}</h1>
+    </div>
     <div class="answer-container">
         <div class="ans-name_container">
           <img src="../../assets/selfie.png">
-          <h1 class="ans-name">{{this.answer.answerName}}</h1>
+          <h1 class="ans-name">{{this.answer.name}}</h1>
           <h1 class="ans-name"># {{this.answer.answerOrder}}</h1>
-          <h2>{{this.answer.answerTime}}</h2>
+          <h2>{{this.answer.time}}</h2>
         </div>
         <br>
         <div class="ans-text">
-          <h1 class="detail">{{this.answer.answerDetail}}</h1>
+          <h1 class="detail">{{this.answer.description}}</h1>
           <h2>
-            <a href="">{{this.answer.answerLink}}</a>
+            <a href="">{{this.answer.link}}</a>
           </h2>
           <h1 class="ans-des">
-              <a>{{this.answer.answerDes}}</a>
+              <linkPrevue v-bind:url="answer.link"></linkPrevue>
           </h1>
         </div>
     </div>
   </div>
 </template>
 <script>
+import linkPrevue from '../LinkPreview'
 export default {
   name: 'Answer',
+  components: {
+    linkPrevue
+  },
   props: {
     answer: {
       type: Object
+    }
+  },
+  methods: {
+    addStar: function () {
+      this.answer.starAmount += 1
     }
   }
 }
 </script>
 
 <style lang="scss">
+.voteNum{
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 35px;
+  color: #71C9CE;
+  text-align: center;
+}
 .answer-background {
   font-size: 18px;
   position: relative;
-  height:200px;
+  height:50%;
   line-height: 24px;
+  margin: 3em 0 3em 0;
+  display: flex;
   .answer-container{
-    margin: auto;
     height:100%;
-    margin-top:1%;
+    margin: 0em 0.5em 0 1em;
     display: block;
     .ans-name_container{
       display: flex;
@@ -54,7 +70,6 @@ export default {
       img{
         width:50px;
         height:50px;
-        margin-top:1%;
         padding:8px;
         border-radius: 50%;
       }
@@ -93,5 +108,10 @@ export default {
         padding-top:1%;
     }
   }
+}
+.voteStar{
+  width:40px;
+  height:40px;
+  cursor: pointer;
 }
 </style>

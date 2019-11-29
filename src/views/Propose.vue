@@ -75,6 +75,7 @@
 </template>
 <script>
 import { url } from '../url'
+import router from '../router/index'
 export default {
   data () {
     return {
@@ -110,13 +111,7 @@ export default {
         }),
         body: this.data
       }).then(data => data.json().data)
-        .then((data) => {
-          for (var i; i <= data.length; i++) {
-            fetch(url + '/api/questions' + data[i], {
-              method: 'post'
-            })
-          }
-        })
+        .then(router.push('home'))
     }
   },
   watch: {
