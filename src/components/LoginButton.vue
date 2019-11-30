@@ -44,22 +44,26 @@ export default {
                 'Content-Type': 'application/json'
               })
             }).then(data =>
-              fetch(url + 'api/users/info', {
-                method: 'post',
-                headers: new Headers({
-                  'Authorization': 'Bearer ' + data.json().data.token,
-                  'Content-Type': 'application/json'
-                })
-              }).catch(
-                function (error) {
-                  alert(error.code)
+              data.json().then(data => {
+                localStorage.setItem('token', data.accessToken)
+                fetch(url + 'api/users/info', {
+                  method: 'get',
+                  headers: new Headers({
+                    'Authorization': 'Bearer ' + data.accessToken,
+                    'Content-Type': 'application/json'
+                  })
+                }).then(data => {
+                  data.json().then(
+                    data => {
+                      console.log(data)
+                      localStorage.setItem('email', data.email)
+                      localStorage.setItem('userName', data.username)
+                      localStorage.setItem('uid', data.uid)
+                    }
+                  )
                 }
-              ).then(data => data.json().data)
-                .then((data) => {
-                  localStorage.setItem('userName', data.userName)
-                  localStorage.setItem('photo', data.profilePhoto)
-                  localStorage.setItem('token', data.token)
-                })
+                )
+              })
             )
           }).catch(function (error) {
             console.log(error)

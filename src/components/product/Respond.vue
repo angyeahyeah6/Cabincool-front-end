@@ -2,34 +2,50 @@
     <div class="respond-container">
         <div class="black-header">
             <img src="../../assets/selfie.png">
-            <h1>{{userName}}</h1>
+            <h1>{{this.userName}}</h1>
         </div>
         <div class="description">
-            <input type="text" placeholder="  說明">
+            <input v-model="description" type="text" placeholder="  說明">
         </div>
         <div class="web-link">
-            <input type="text" placeholder="  網址" style="height:25%;">
-            <button class="submit-button-1" style="float:right; margin-right:20px;" @click="reload">傳送</button>
+            <input v-model="link" type="text" placeholder="  網址" style="height:25%;">
+            <button type="submit" class="submit-button-1" style="float:right; margin-right:20px;" @click="makeRespond">傳送</button>
         </div>
     </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { url } from '../../url'
 export default {
   // mounted:{
   // },
+  data: function () {
+    return {
+      userName: localStorage.getItem('userName'),
+      description: '',
+      link: ''
+    }
+  },
   props: {
     qid: {
       type: Number
     }
   },
   computed: {
-    ...mapState({
-      userName: state => state.userName
-    })
   },
   method: {
-    reload () {
+    makeRespond () {
+      fetch(url + 'api/questions/' + this.$route.params.id + '/answers', {
+        method: 'post',
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({
+          'Name': localStorage.getItem('userName'),
+          'description': this.description,
+          'link': this.link
+        })
+      })
       window.location.reload()
     }
   }

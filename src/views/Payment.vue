@@ -5,23 +5,23 @@
             <h1 class="title-3">信用卡付款</h1>
             <div class="pay-container">
                 <h1 class="title-2">卡號</h1>
-                <input type="text" class="input-1">
+                <input v-model="card.cardNo" type="text" class="input-1">
                 <div class="block-0">
                     <div class="block-1">
                         <h1 class="title-2" style="margin-top:40px; width:50%;">有效日期</h1>
-                        <input type="text" class="input-1" style="display: inline; width:40%;">
+                        <input v-model="card.validYear" type="text" class="input-1" style="display: inline; width:40%;">
                         <h1 class="title-2" style="display: inline; font-size:30px;"> / </h1>
-                        <input type="text" class="input-1" style="display: inline; width:40%;">
+                        <input v-model="card.validMonth" type="text" class="input-1" style="display: inline; width:40%;">
                     </div>
                     <div class="block-1" style="float:right; width:40px"></div>
                     <div class="block-1">
                         <h1 class="title-2" style="margin-top:40px; width:60%;">背面末三碼</h1>
-                        <input type="text" class="input-1" style="display: inline; width:90%;">
+                        <input v-model="card.securityCode" type="text" class="input-1" style="display: inline; width:90%;">
                     </div>
                 </div>
-                <router-link class="router-link" :to="{ name: 'home'}">
-                <button class="submit-button-1" style="">下一步</button>
-                </router-link>
+                <!-- <router-link class="router-link" :to="{ name: 'questionList'}"> -->
+                <button @click="makeDonateCard" class="submit-button-1">下一步</button>
+                <!-- </router-link> -->
             </div>
         </el-col>
         <el-col :span="2">
@@ -38,25 +38,61 @@
                 <input type="text" class="input-2" value="LLL123 456 789 999" disabled>
                 <h1 class="title-2" style="margin-top:20px;">繳費期限</h1>
                 <input type="text" class="input-2" value="2019-11-14" disabled>
-                <router-link class="router-link" :to="{ name: 'questionList'}">
-                <button class="submit-button-1" style="margin-top:30px;">下一步</button>
-                </router-link>
+                <!-- <router-link class="router-link" :to="{ name: 'questionList'}"> -->
+                <button @click="makeDonateIbon" class="submit-button-1" style="margin-top:30px;">下一步</button>
+                <!-- </router-link> -->
             </div>
         </el-col>
     </el-row>
 </div>
 </template>
 <script>
+import { url } from '../url'
+import { router } from '../router/index'
 export default {
+  name: 'Payment',
+  mounted: function () {
+    console.log('hhh')
+  },
   data () {
     return {
-      inputBackground: '#fffff'
+      card: {
+        type: 'CreditCard',
+        cardNo: '',
+        validYear: '',
+        validMonth: '',
+        securityCode: ''
+      },
+      ibon: {
+        type: 'ibon',
+        code: 'LLL123 456 789 999',
+        validTime: '2019-11-14'
+      }
+    }
+  },
+  method: {
+    makeDonateCard () {
+      fetch(url + 'api/questions/' + this.$route.params.id + '/donate', {
+        method: 'post',
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }),
+        body: this.card
+      }).then(router.push('questionList/'))
+    },
+    makeDonateIbon () {
+      fetch(url + 'api/questions/' + this.$route.params.id + '/donate', {
+        method: 'post',
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }),
+        body: this.ibon
+      })
     }
   },
   watch: {
-    inputCheck: function (newAmount, oldAmount) {
-      if (newAmount !== '') { this.inputBackground = '#C6F4F1' } else { this.inputBackground = '#FBFBFB' }
-    }
   }
 }
 </script>

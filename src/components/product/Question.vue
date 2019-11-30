@@ -3,14 +3,14 @@
         <div class="name_container">
           <img src="../../assets/selfie.png">
           <h1 class="name">{{this.question.questionOwner}}</h1>
-          <h2>{{questionTime}}</h2>
-          <h1 class="category" style="margin-left: 600px;"># {{this.question.questionCategory}}</h1>
+          <h2>{{this.question.time}}</h2>
+          <h1 class="category" style="margin-left: 600px;"># {{this.question.category}}</h1>
         </div>
         <br>
         <div class="title">
-          <h1>{{this.question.questionTitle}}</h1>
+          <h1>{{this.question.title}}</h1>
           <h2>
-            {{this.question.questionDescription}}
+            {{this.question.description}}
           </h2>
         </div>
     </div>

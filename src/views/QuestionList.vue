@@ -20,9 +20,9 @@
     <el-row>
       <div v-for="(question ,x) in filterQuestions" :key="x">
         <router-link @click="saveQId(question.id)" class="router-link" :to="{ name: 'product', params: { id: question.id }}">
-        <el-col :span="5" v-if="question.fixed==true && x % 4 === 0">
+        <el-col :span="5" v-if="question.finished==true && x % 4 === 0">
           <div class="single-question">
-            <h1 class="category"># {{question.category}}</h1>
+            <h1 class="category"># {{question.category}} {{x}}</h1>
             <h1 v-if="question.title<40" class="questionTitle">{{question.title}}</h1>
             <h1 v-else class="questionTitle">{{question.title.substring(0,40)}} ...</h1>
             <div class="toBottom">
@@ -34,9 +34,9 @@
               </div>
           </div>
         </el-col>
-        <el-col :span="5" :offset="1" v-else-if="question.fixed===true && x % 4 !== 0">
+        <el-col :span="5" :offset="1" v-else-if="question.finished===true && x % 4 !== 0">
           <div class="single-question">
-            <h1 class="category"># {{question.category}}</h1>
+            <h1 class="category"># {{question.category}} {{x}}</h1>
             <h1 v-if="question.title<40" class="questionTitle">{{question.title}}</h1>
             <h1 v-else class="questionTitle">{{question.title.substring(0,40)}} ...</h1>
             <div class="toBottom">
@@ -49,7 +49,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="5" v-else-if="question.fixed===false && x % 4 === 0">
+        <el-col :span="5" v-else-if="question.finished===false && x % 4 === 0">
           <div class="single-question">
             <h1 class="category"># {{question.category}}</h1>
             <h1 v-if="question.title<40" class="questionTitle">{{question.title}}</h1>
@@ -79,7 +79,6 @@
 
 <script>
 import { url } from '../url'
-import { mapState } from 'vuex'
 export default {
   name: 'questionList',
   isHot: false,
@@ -91,54 +90,34 @@ export default {
     }
   },
   mounted () {
-    fetch(url + '/api/questions', {
+    fetch(url + 'api/questions', {
       method: 'get',
       headers: new Headers({
         'Authorization': 'Bearer ' + localStorage.getItem('token'),
         'Content-Type': 'application/json'
       })
-    }).then(data => data.json().data)
-      .then((data) => { this.questions = data })
-  },
-  computed: {
-    ...mapState({
-      userName: state => state.userName,
-      token: state => state.token
     })
-    // dateParser: function (dt) {
-    //   var DD = ('0' + dt.getDate()).slice(-2)
-    //   var MM = ('0' + (dt.getMonth() + 1)).slice(-2)
-    //   var YYYY = dt.getFullYear()
-    //   var hh = ('0' + dt.getHours()).slice(-2)
-    //   var mm = ('0' + dt.getMinutes()).slice(-2)
-    //   var ss = ('0' + dt.getSeconds()).slice(-2)
-    //   var dateString = YYYY + '-' + MM + '-' + DD + ' ' + hh + ':' + mm + ':' + ss
-    //   return (dateString)
-    // }
+      .then(data => {
+        data.json().then((data) => {
+          for (var i = 0; i < data.length; i++) {
+            fetch(url + 'api/questions/' + String(data[i]), {
+              method: 'get',
+              headers: new Headers({
+                'Content-Type': 'application/json'
+              })
+            }).then(data => data.json().then(data => {
+              console.log(data)
+              this.questions.push(data)
+            }))
+          }
+        })
+      }
+      )
   },
   data () {
     return {
       isActive: [ false, false, false, false, false, false, false ],
-      questions: [{
-        id: 1,
-        fixed: true,
-        category: '社會',
-        title: '霍金說：「人類大腦可脫離人體而獨立存在..」思維複製到人工智慧上面,碳基生命進化為矽基生命,可行？',
-        name: '張盛閎',
-        time: new Date('2019/10/25 23:52'),
-        preView: '在大數據文章中嵌入程式的幾個推....',
-        clickCount: 20
-      },
-      {
-        id: 2,
-        fixed: false,
-        category: '科學',
-        title: '霍金說：「人類大腦可脫離人體而獨立存在..」思維複製到人工智慧上面,碳基生命進化為矽基生命,可行？',
-        name: '張盛閎',
-        amount: 100,
-        time: new Date('2019/10/25 23:55'),
-        clickCount: 1000
-      }],
+      questions: [],
       filterQuestions: []
     }
   },

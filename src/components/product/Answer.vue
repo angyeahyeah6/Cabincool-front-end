@@ -26,6 +26,7 @@
 </template>
 <script>
 import linkPrevue from '../LinkPreview'
+import { mapState } from 'vuex'
 export default {
   name: 'Answer',
   components: {
@@ -35,6 +36,12 @@ export default {
     answer: {
       type: Object
     }
+  },
+  computed: {
+    ...mapState({
+      userName: state => state.userName,
+      token: state => state.token
+    })
   },
   methods: {
     addStar: function () {

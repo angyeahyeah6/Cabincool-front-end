@@ -63,7 +63,7 @@
                 </el-row>
                 <el-row>
                     <el-col :span="24">
-                        <router-link class="router-link" :to="{ name: 'payment'}">
+                        <router-link class="router-link" :to="{ name: 'payment', params:{ id: questionId}}">
                         <button @click="makeQuestion" class="submit-button" style="background: #435058; color:white;">下一步</button>
                         </router-link>
                         <button class="submit-button" hidden>儲存草稿</button>
@@ -75,12 +75,13 @@
 </template>
 <script>
 import { url } from '../url'
-import router from '../router/index'
+// import router from '../router/index'
 export default {
   data () {
     return {
       inputAmount: '',
       starAmount: 0,
+      questionId: 0,
       data: {
         title: '',
         category: '',
@@ -103,15 +104,14 @@ export default {
       console.log(this.data)
     },
     makeQuestion () {
-      fetch(url + '/api/questions', {
+      fetch(url + 'api/questions', {
         method: 'post',
         headers: new Headers({
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
           'Content-Type': 'application/json'
         }),
-        body: this.data
-      }).then(data => data.json().data)
-        .then(router.push('home'))
+        body: JSON.stringify(this.data)
+      }).then(data => console.log(data))
     }
   },
   watch: {

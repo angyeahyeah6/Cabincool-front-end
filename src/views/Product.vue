@@ -34,26 +34,40 @@ import { url } from '../url'
 export default {
   name: 'product',
   mounted () {
-    fetch(url + '/api/questions/' + this.$route.params, {
+    console.log(url + 'api/questions/' + this.$route.params.id)
+    fetch(url + 'api/questions/' + this.$route.params.id, {
       method: 'get',
       headers: new Headers({
         'Authorization': 'Bearer ' + localStorage.getItem('token'),
         'Content-Type': 'application/json'
       })
-    }).then(data => {
-      data = data.json().data
-      this.donate = data.donate
-      this.question = data.question
-      for (var i = 0; i < data.answers.length; i++) {
-        fetch(url + '/api/questions/' + this.$route.params + '/answers/' + data.answers[i], {
-          method: 'get',
-          headers: new Headers({
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-            'Content-Type': 'application/json'
-          })
-        }).then(data => this.answers.push(data.json().data))
+    }).then(data => data.json().then(
+      data => {
+        console.log(data)
+        this.question = data
       }
-    })
+    ))
+    fetch(url + 'api/questions/' + this.$route.params.id + '/answers', {
+      method: 'get',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }).then(data => data.json().then(
+      data => {
+        for (var l = 0; l < data.length; l++) {
+          fetch(url + 'api/questions/' + this.$route.params.id + '/answers' + String(data[l], {
+            method: 'get',
+            headers: new Headers({
+              'Content-Type': 'application/json'
+            })
+          })).then(data => data.json().then(
+            data => {
+              this.answers.push(data)
+            }
+          ))
+        }
+      }
+    ))
   },
   components: {
     Answer,
@@ -64,37 +78,15 @@ export default {
   },
   data () {
     return {
-      addOns: [{
-        addOnAmount: 30,
-        addOnDes: '意識不僅存在於大腦中也有可能在宇宙中存在；兩個質子間會互相傳輸能量影響彼此，根據熱力學第二定律的推理，不同溫差的物質會使能量達到平衡，此為量子糾纏。意識很可能是量子糾纏形成的聯結。宇宙間每個粒子在大霹靂時都存在過量子糾纏的狀態，一旦某個外因的刺激仍有可能重建量子糾纏關係，因此人工智慧複製人類思維，使碳基生命進化為矽基生命有待驗證。'
-      }],
+      // addOns: [{
+      //   addOnAmount: 30,
+      //   addOnDes: '意識不僅存在於大腦中也有可能在宇宙中存在；兩個質子間會互相傳輸能量影響彼此，根據熱力學第二定律的推理，不同溫差的物質會使能量達到平衡，此為量子糾纏。意識很可能是量子糾纏形成的聯結。宇宙間每個粒子在大霹靂時都存在過量子糾纏的狀態，一旦某個外因的刺激仍有可能重建量子糾纏關係，因此人工智慧複製人類思維，使碳基生命進化為矽基生命有待驗證。'
+      // }],
       donate: {
-        donateAmount: 100,
-        voteAmount: 1,
-        remainTime: 26
       },
       question: {
-        id: 1,
-        questionOwner: '李惟慈',
-        questionTime: '2019/02/04  23:52',
-        questionCategory: '科學',
-        questionTitle: '霍金說：「人類大腦可脫離人體而獨立存在..」思維複製到人工智慧上面,碳基生命進化為矽基生命,可行？',
-        questionDescription: '意識不僅存在於大腦中也有可能在宇宙中存在；兩個質子間會互相傳輸能量影響彼此，根據熱力學第二定律的推理，不同溫差的物質會使能量達到平衡，此為量子糾纏。意識很可能是量子糾纏形成的聯結。宇宙間每個粒子在大霹靂時都存在過量子糾纏的狀態，一旦某個外因的刺激仍有可能重建量子糾纏關係，因此人工智慧複製人類思維，使碳基生命進化為矽基生命有待驗證。'
       },
-      answers: [{
-        name: '李惟慈',
-        time: '2019/02/04  23:52',
-        description: '理解"可以 讓我們 控制自己的行為 得以讓我們 所理解的事物/行為可以變得更有效率. 例如說: 我們理解"燃燒過程" 所以我們可以製造機械來控制"燃燒過程" 讓它變得更有效率.',
-        link: 'https://medium.com/py…/inserting-code-in-medium-f1ebed3262e8',
-        starAmount: 3
-      },
-      {
-        name: '李惟慈',
-        time: '2019/02/04  23:52',
-        description: '理解"可以 讓我們 控制自己的行為 得以讓我們 所理解的事物/行為可以變得更有效率. 例如說: 我們理解"燃燒過程" 所以我們可以製造機械來控制"燃燒過程" 讓它變得更有效率.',
-        link: 'https://medium.com/py…/inserting-code-in-medium-f1ebed3262e8',
-        starAmount: 4
-      }]
+      answers: []
     }
   },
   methods: {

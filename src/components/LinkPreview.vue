@@ -10,11 +10,8 @@
       <div class="wrapper" :style="{width:cardWidth}">
         <div class="card-info">
           <div class="card-text">
-            <h1>{{response.title}}</h1>
+            <a href="javascript:;" @click="viewMore" v-if="showButton"><h1>{{response.title}}</h1></a>
             <p>{{response.description}}</p>
-          </div>
-          <div class="card-btn">
-            <a href="javascript:;" v-if="showButton" @click="viewMore">View More</a>
           </div>
         </div>
      </div>
@@ -111,12 +108,12 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Hind+Siliguri:400,600');
 
 .wrapper {
-  overflow: auto;
+  /* overflow: auto; */
   border-radius: 7px 7px 7px 7px;
   background-color: #fff;
-  -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+  /* -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15); */
 }
 
 .card-img {
@@ -140,16 +137,18 @@ img {
 
 .card-text {
   width: 80%;
-  margin: 0 auto;
   text-align: justify;
 }
-
+.card-text a {
+  text-decoration: none;
+}
 .card-text h1 {
   text-align: left;
   font-size: 18px;
   color: #435058;
-  margin: 8px 0 5px 0;
+  margin: 0;
   font-family: 'Hind Siliguri', sans-serif;
+
 }
 
 .card-text p {
@@ -158,7 +157,6 @@ img {
   font-size: 15px;
   overflow: hidden;
   margin: 0;
-  text-align: center;
 }
 
 .card-btn {
@@ -197,7 +195,7 @@ img {
   height: 10px;
   width: 28px;
   animation: rotate 0.8s infinite linear;
-  border: 5px solid #868686;
+  /* border: 5px solid #868686; */
   border-right-color: transparent;
   border-radius: 50%;
 }

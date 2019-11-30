@@ -35,7 +35,7 @@ const routes = [
     component: Donate
   },
   {
-    path: '/payment',
+    path: '/payment/:id',
     name: 'payment',
     component: Payment
   }
