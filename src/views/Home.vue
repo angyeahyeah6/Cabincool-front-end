@@ -43,7 +43,7 @@
       <el-col :span="7">
         <img src="../assets/fun1.png" width="50%" style="display:block; margin:auto;">
         <h1 class="title-18" >小小問題大大解答</h1>
-        <h1 class="title-18" >在 Cabincool 上我們透過獎金制度吸引現實世界中真正的專家，並透過評分制度選出最佳的答案，讓您每一個問題都有著最高品質的答案。</h1>
+        <h1 class="title-18" style="text-align:justify;">在 Cabincool 上我們透過獎金制度吸引現實世界中真正的專家，並透過評分制度選出最佳的答案，讓您每一個問題都有著最高品質的答案。</h1>
       </el-col>
       <el-col :span="1">
         <h1 class="title-18" style="color:white;">-</h1>
@@ -51,7 +51,7 @@
       <el-col :span="7">
         <img src="../assets/fun2.png" width="50%" style="display:block; margin:auto;">
         <h1 class="title-18" >市場機制下的評選機制</h1>
-        <h1 class="title-18" >提問者可以設定要怎麼分配獎金與如何選擇答案，不同於其他平台，Cabincool 可以選擇開放一般使用者也加入評選，透過眾人的智慧選出最好的答案！</h1>
+        <h1 class="title-18" style="text-align:justify;">提問者可以設定要怎麼分配獎金與如何選擇答案，不同於其他平台，Cabincool 可以選擇開放一般使用者也加入評選，透過眾人的智慧選出最好的答案！</h1>
       </el-col>
       <el-col :span="1">
         <h1 class="title-18" style="color:white;">-</h1>
@@ -59,7 +59,7 @@
       <el-col :span="7">
         <img src="../assets/fun3.png" width="50%" style="display:block; margin:auto;">
         <h1 class="title-18" >回答問題以賺取獎金</h1>
-        <h1 class="title-18" >您可以在 Cabincool 上尋找有趣的問題，並在任一您習慣的平台（如 Medium）上發表回覆的文章，就有機會可以讓您的回答被眾人看見並且賺取獎金。</h1>
+        <h1 class="title-18" style="text-align:justify;">您可以在 Cabincool 上尋找有趣的問題，並在任一您習慣的平台（如 Medium）上發表回覆的文章，就有機會可以讓您的回答被眾人看見並且賺取獎金。</h1>
       </el-col>
     </el-row>
     <h1 class="title-18" style="color:white;">-</h1>
