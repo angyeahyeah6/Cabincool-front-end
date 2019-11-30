@@ -9,12 +9,13 @@
         </div>
         <div class="web-link">
             <input v-model="link" type="text" placeholder="  網址" style="height:25%;">
-            <button type="submit" class="submit-button-1" style="float:right; margin-right:20px;" @click="makeRespond">傳送</button>
         </div>
+        <button type="submit" class="submit-button-1" style="float:right; margin: 0 0 20px 50px" @click="makeRespond">傳送</button>
     </div>
 </template>
 <script>
 import { url } from '../../url'
+import router from '../../router'
 export default {
   // mounted:{
   // },
@@ -46,7 +47,8 @@ export default {
           'link': this.link
         })
       })
-      window.location.reload()
+      console.log('product/' + this.$route.id)
+      router.push('product/' + this.$route.id)
     }
   }
 }
@@ -83,7 +85,7 @@ input{
         border-bottom:1px solid #435058;
     }
     .web-link{
-        height:40%;
+        height:30%;
         width:100%;
     }
     input{

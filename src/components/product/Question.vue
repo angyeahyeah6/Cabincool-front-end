@@ -2,7 +2,7 @@
     <div class="question-container">
         <div class="name_container">
           <img src="../../assets/selfie.png">
-          <h1 class="name">{{this.question.questionOwner}}</h1>
+          <h1 class="name">{{this.question.name}}</h1>
           <h2>{{this.question.time}}</h2>
           <h1 class="category" style="margin-left: 600px;"># {{this.question.category}}</h1>
         </div>

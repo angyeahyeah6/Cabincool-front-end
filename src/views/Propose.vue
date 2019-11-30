@@ -104,14 +104,16 @@ export default {
       console.log(this.data)
     },
     makeQuestion () {
-      fetch(url + 'api/questions', {
-        method: 'post',
-        headers: new Headers({
-          'Authorization': 'Bearer ' + localStorage.getItem('token'),
-          'Content-Type': 'application/json'
-        }),
-        body: JSON.stringify(this.data)
-      }).then(data => console.log(data))
+      if (this.data.title !== '') {
+        fetch(url + 'api/questions', {
+          method: 'post',
+          headers: new Headers({
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+          }),
+          body: JSON.stringify(this.data)
+        }).then(data => console.log(data))
+      }
     }
   },
   watch: {

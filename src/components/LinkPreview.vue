@@ -107,14 +107,14 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Hind+Siliguri:400,600');
 
-.wrapper {
+/* .wrapper { */
   /* overflow: auto; */
-  border-radius: 7px 7px 7px 7px;
-  background-color: #fff;
+  /* border-radius: 7px 7px 7px 7px;
+  background-color: #fff; */
   /* -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15); */
-}
+/* } */
 
 .card-img {
   width: 50%;

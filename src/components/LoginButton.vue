@@ -19,17 +19,7 @@ export default {
     token: ''
   }),
   methods: {
-    // signin () {
-    //   this.$gAuth
-    //     .signIn()
-    //     .then(GoogleUser => {
-    //       console.log(GoogleUser)
-    //     })
-    //     .catch(err => {
-    //       console.error(err)
-    //     })
-    // }
-    async signin () {
+    signin () {
       var provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithPopup(provider).then(function (result) {
         console.log(result.credential)
@@ -92,7 +82,7 @@ export default {
   display: flex;
   align-items: center;
   margin-left: 22px;
-  padding: 6.5px 10px;
+  padding: 5px 7px;
   border: 2px solid #435058;
   background: white;
   z-index: 1;

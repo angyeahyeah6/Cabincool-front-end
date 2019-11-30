@@ -12,12 +12,12 @@
     <a
       href="/"
       class="title"
-    >Cabincool</a>
+    ><img src="../assets/cabincool-logo.png" width="17%"></a>
     <ol class="nav">
-      <li>
+      <li class="nav-word">
         <a href="/propose">提問</a>
       </li>
-      <li>
+      <li class="nav-word">
         <a href="/questionList">探索</a>
       </li>
     </ol>
@@ -93,12 +93,7 @@ $nav-height: 56px;
 
   .title {
     position: absolute;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 28px;
-    text-decoration: none;
-    z-index: 10;
-    color: black;
+    left: 46%;
   }
   .nav {
     display: flex;
@@ -113,6 +108,10 @@ $nav-height: 56px;
       padding: 0 22px;
       text-decoration: none;
     }
+  }
+  .nav-word{
+    padding: 0;
+    margin: 0
   }
 }
 </style>

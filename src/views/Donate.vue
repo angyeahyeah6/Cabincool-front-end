@@ -8,7 +8,7 @@
                 <div class="do-display-text-container">
                   <h1 class="title-2" style="display: inline;">累積金額</h1>
                   <h1 class="title-2" style="display: inline; margin: 20px;">NT$ {{grandTotal}}</h1>
-                  <h1 v-if="singleGet == true" class="title-2" style="display: inline; margin: 20px; font-size: 14px;">第一名獨得</h1>
+                  <h1 v-if="singleGet == 'false'" class="title-2" style="display: inline; margin: 20px; font-size: 14px;">第一名獨得</h1>
                   <h1 v-else></h1>
                 </div>
                 <div class="do-display-text-container">
@@ -34,15 +34,43 @@
     </div>
 </template>
 <script>
+import { url } from '../url'
 export default {
+  mounted: function () {
+    fetch(url + 'api/questions/' + this.$route.params.id, {
+      method: 'get',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      })
+    }).then(data => data.json().then(
+      data => {
+        console.log(data)
+        this.donateTitle = data.title
+        this.singleGet = data.winRule
+      }
+    ))
+    fetch('/api/questions/' + this.$route.params.id + '/donate', {
+      method: 'post',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      })
+    }).then(data => data.json().then(
+      data => {
+        this.grandTotal = data.totalAmount
+        this.remainTime = data.remainTime
+      }
+    ))
+  },
   data () {
     return {
-      donateTitle: '霍金說：「人類大腦可脫離人體而獨立存在..」思維複製到人工智慧上面,碳基生命進化為矽基生命,可行？',
+      donateTitle: '',
       grandTotal: 100,
       remainTime: 130,
       inputAmount: '',
       starAmount: 5,
-      singleGet: true
+      singleGet: 'false'
     }
   },
   watch: {
@@ -50,8 +78,21 @@ export default {
       this.starAmount = this.inputAmount / 5
     }
   },
-  addEvent ({ type, target }) {
-    this.inputAmount = target.value
+  method: {
+    donateMoney () {
+      fetch('/api/questions/' + this.$route.id + '/money', {
+        method: 'post',
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(
+          {
+            'name': localStorage.getItem('userName'),
+            'amount': this.inputAmount
+          })
+      })
+    }
   }
 }
 </script>>

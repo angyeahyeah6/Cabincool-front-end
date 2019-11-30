@@ -23,24 +23,25 @@
                 </router-link>
             </div>
         </el-col>
-        <el-col :span="2">
+        <el-col :span="1" :offset="1">
             <div style="margin-top:100px;">
             <h1 class="title-2" >或</h1>
             <div class="verti-line"></div>
             </div>
         </el-col>
         <el-col :span="11">
-            <h1 class="title-18" >熱門問題</h1>
-            <h1 class="title-18" style="color:white;">-</h1>
-            <img src="../assets/temp_question_show.png" width="100%">
+          <div class="home-container">
+            <h1 class="title-18" style="padding-bottom: 20px" >熱門問題</h1>
+            <img src="../assets/temp_question_show.png" width="110%">
+          </div>
         </el-col>
     </el-row>
     <h1 class="title-18" style="color:white;">-</h1>
   </div>
   <div>
-    <el-row class="home-section">
+    <el-row class="home-section-2">
       <h1 class="title-18" style="color:white;">-</h1>
-      <el-col :span="7">
+      <el-col :span="7" :offset="1">
         <img src="../assets/fun1.png" width="50%" style="display:block; margin:auto;">
         <h1 class="title-18" >小小問題大大解答</h1>
         <h1 class="title-18" style="text-align:justify;">在 Cabincool 上我們透過獎金制度吸引現實世界中真正的專家，並透過評分制度選出最佳的答案，讓您每一個問題都有著最高品質的答案。</h1>
@@ -62,9 +63,7 @@
         <h1 class="title-18" style="text-align:justify;">您可以在 Cabincool 上尋找有趣的問題，並在任一您習慣的平台（如 Medium）上發表回覆的文章，就有機會可以讓您的回答被眾人看見並且賺取獎金。</h1>
       </el-col>
     </el-row>
-    <h1 class="title-18" style="color:white;">-</h1>
   </div>
-  <h1 class="title-18" style="color:white;">-</h1>
 </div>
 </template>
 <script>
@@ -76,6 +75,10 @@ export default {
 .home-section{
   background: #FBFBFB;
   height: 420px;
+}
+.home-section-2{
+  background: #FBFBFB;
+  height: 600px;
 }
 .bigword{
   font-size: 44px;
@@ -102,7 +105,7 @@ export default {
 }
 .home-img{
     margin-top: 90px;
-    margin-left: 4.5%;
+    margin-left: 5.9%;
     width: 26vw;
 }
 .title-18{
@@ -126,7 +129,7 @@ export default {
   }
 }
 .home-container{
-    padding:50px;
+    padding:40px;
 }
 .home-next{
   margin-top: 60px;

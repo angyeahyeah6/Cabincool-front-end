@@ -26,7 +26,6 @@
 </template>
 <script>
 import linkPrevue from '../LinkPreview'
-import { mapState } from 'vuex'
 export default {
   name: 'Answer',
   components: {
@@ -37,15 +36,17 @@ export default {
       type: Object
     }
   },
-  computed: {
-    ...mapState({
-      userName: state => state.userName,
-      token: state => state.token
-    })
-  },
   methods: {
     addStar: function () {
       this.answer.starAmount += 1
+      fetch('/api/questions/' + this.$route.params.id + '/answers/' + this.answer.id + '/vote', {
+        method: 'post',
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({ 'voteStar': 1 })
+      })
     }
   }
 }
@@ -72,7 +73,7 @@ export default {
     display: block;
     .ans-name_container{
       display: flex;
-      width:90%;
+      width:100%;
       height:25%;
       img{
         width:50px;

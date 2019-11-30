@@ -185,6 +185,7 @@ ol li{
   display: inline;
   margin: 0 10px;
   padding: 0 10px;
+  color: #435058;
   &:hover {
         color: #07BAC5;
         cursor: pointer;
@@ -215,6 +216,7 @@ ol li{
   height: 360px ;
   border: 2px solid #E5E5E5;
   padding: 10px;
+  margin: 1em 0 1em 0;
   transition: background 0.2s;
   &:hover {
     background: #E5E5E5;

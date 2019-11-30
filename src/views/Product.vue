@@ -31,6 +31,7 @@ import Donate from '../components/product/DonateSection'
 import AddOn from '../components/product/AddOn'
 import Respond from '../components/product/Respond'
 import { url } from '../url'
+import { router } from '../router'
 export default {
   name: 'product',
   mounted () {
@@ -43,7 +44,6 @@ export default {
       })
     }).then(data => data.json().then(
       data => {
-        console.log(data)
         this.question = data
       }
     ))
@@ -54,15 +54,27 @@ export default {
       })
     }).then(data => data.json().then(
       data => {
+        console.log(data)
         for (var l = 0; l < data.length; l++) {
-          fetch(url + 'api/questions/' + this.$route.params.id + '/answers' + String(data[l], {
+          fetch(url + 'api/questions/' + this.$route.params.id + '/answers' + String(data[l]), {
             method: 'get',
             headers: new Headers({
               'Content-Type': 'application/json'
             })
-          })).then(data => data.json().then(
+          }).then(data => data.json().then(
             data => {
+              console.log(data)
               this.answers.push(data)
+            }
+          ))
+          fetch('/api/questions/' + this.$route.params.id + '/answers/' + String(data[l]) + 'vote', {
+            method: 'get',
+            headers: new Headers({
+              'Content-Type': 'application/json'
+            })
+          }).then(data => data.json().then(
+            data => {
+              this.answers[l].starAmount = data.count
             }
           ))
         }
@@ -86,21 +98,37 @@ export default {
       },
       question: {
       },
-      answers: []
+      answers: [{
+        id: '',
+        name: '李惟慈',
+        time: '2019/02/04  23:52',
+        description: '.',
+        link: 'https://hackmd.io/B6k3Eyk9SMSp3AU3RyktIw?both',
+        starAmount: 5
+
+      },
+      {
+        id: '',
+        name: '李惟慈',
+        time: '2019/02/04  23:52',
+        description: '.',
+        link: 'https://hackmd.io',
+        starAmount: 5
+
+      }]
     }
   },
   methods: {
-    // method: {
-    // getSingle(){
-    //   fetch(url + 'api/login', {
-    //       method: 'post',
-    //       body: JSON.stringify({
-    //         'idToken': idToken
-    //       })
-    //     })
-    //       .then(data => data)
-    //   }
-    // },
+    makeDonateCard () {
+      fetch(url + 'api/questions/' + this.$route.params.id + '/donate', {
+        method: 'post',
+        headers: new Headers({
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }),
+        body: this.card
+      }).then(router.push('questionList/'))
+    }
   }
 }
 </script>
