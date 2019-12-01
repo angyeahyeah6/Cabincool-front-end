@@ -119,10 +119,10 @@ export default {
                 'Content-Type': 'application/json'
               })
             }).then(data => data.json().then(data => {
-              temp.remainTime = data.remainTime
-              temp.totalAmount = data.totalAmount
+              temp.remainTime = 30
+              temp.totalAmount = Math.floor(Math.random()) * 100
               this.questions.push(temp)
-              console.log(temp)
+              // console.log(temp)
             }))
           }
         })

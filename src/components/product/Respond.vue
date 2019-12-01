@@ -1,7 +1,7 @@
 <template>
     <div class="respond-container">
         <div class="black-header">
-            <img src="../../assets/selfie.png">
+            <img v-bind:src="imageSrc">
             <h1>{{this.userName}}</h1>
         </div>
         <div class="description">
@@ -10,20 +10,21 @@
         </div>
         <div class="web-link">
             <input v-model="link" type="text" placeholder="  網址" style="height:25%;">
-            <button @click="makeRespond">傳送</button>
         </div>
+        <button class ="submit-button-1" style="float: right; margin:auto;" @click="makeRespond">傳送</button>
     </div>
 
 </template>
 <script>
-// import { url } from '../../url'
+import { url } from '../../url'
 // import router from '../../router'
 export default {
   data: function () {
     return {
       userName: localStorage.getItem('userName'),
       description: '',
-      link: ''
+      link: '',
+      imageSrc: localStorage.getItem('avator_url')
     }
   },
   props: {
@@ -32,6 +33,17 @@ export default {
     }
   },
   method: {
+    makeRespond: function () {
+      fetch(url + 'api/questions/' + this.$route.id + '/answers', {
+        method: 'post',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({
+          'description': this.description,
+          'link': this.link })
+      }).then(data => console.log(data.json()))
+    }
   }
 }
 </script>

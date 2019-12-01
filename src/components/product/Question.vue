@@ -57,26 +57,27 @@ export default {
     display: flex;
     margin-top:5%;
     img{
-      width:50px;
+      // width:50px;
       height:50px;
       padding: 10px;
       border-radius: 50%;
     }
     .name{
-      width: 10%;
+      width: 50%;
       font-size: 18px;
-      margin: 2%;
+      margin: 2% 0 2% 0;
     }
     .time{
       width: 50%;
       color: grey;
       font-size: 15px;
-      margin: 2%;
+      margin: 2% 0 2% 0;
     }
     .category{
+      width: 50%;
       position:relative;
       font-size: 18px;
-      margin-top:2%;
+      margin-top:2% 0 2% 0;
       align-self: right;
       padding:8px;
     }

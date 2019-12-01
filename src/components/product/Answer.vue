@@ -6,9 +6,9 @@
     </div>
     <div class="answer-container">
         <div class="ans-name_container">
-          <img src="../../assets/sky.jpeg">
-          <h1 class="ans-name">{{this.answer.name}}</h1>
-          <h1 class="ans-name"># {{this.answer.answerOrder}}</h1>
+          <img v-bind:src="this.answer.avator_url">
+          <h1 class="ans-name">{{this.answer.author_name}}</h1>
+          <h1 class="ans-name"># {{this.answer.id}}</h1>
           <h2>{{this.answer.time}}</h2>
         </div>
         <br>
