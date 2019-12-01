@@ -1,10 +1,12 @@
 <template>
+<div id="app">
     <el-row>
         <form>
             <el-col :span="10">
                 <div class="filling-area">
                     <h1 class="title-1">提問</h1>
                     <h1 class="title-2">問題標題</h1>
+                    <!-- <input v-if="{{localStorage.get("tempQuestion")}}" v-model="data.title" type="text" > -->
                     <input v-model="data.title" type="text" >
                     <h1 class="title-2">問題分類</h1>
                     <select @change="handleChange">
@@ -72,6 +74,7 @@
             </el-col>
         </form>
     </el-row>
+</div>
 </template>
 <script>
 import { url } from '../url'
@@ -100,11 +103,13 @@ export default {
       if (e.target.options.selectedIndex > -1) {
         this.data.category = e.target.options[e.target.options.selectedIndex].value
       }
-      console.log(this.data.title)
-      console.log(this.data)
+    //   console.log(this.data.title)
+    //   console.log(this.data)
     },
     makeQuestion () {
+      console.log('aah')
       if (this.data.title !== '') {
+        console.log('hhh')
         fetch(url + 'api/questions', {
           method: 'post',
           headers: new Headers({
@@ -112,7 +117,7 @@ export default {
             'Content-Type': 'application/json'
           }),
           body: JSON.stringify(this.data)
-        }).then(data => console.log(data))
+        }).then(data => data.json())
       }
     }
   },

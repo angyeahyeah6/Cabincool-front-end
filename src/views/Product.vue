@@ -1,5 +1,5 @@
 <template>
-<div id = "product">
+<div id="app">
     <el-row class="first-section">
       <el-col :span="18">
         <Question v-bind:question="question"></Question>
@@ -80,6 +80,18 @@ export default {
         }
       }
     ))
+    fetch(url + 'api/questions/' + this.$route.params.id + '/donate', {
+      method: 'get',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      })
+    }).then(data => data.json().then(
+      data => {
+        this.donate.donateAmount = data.totalAmount
+        this.donate.remainTime = data.remainTime
+      }
+    ))
   },
   components: {
     Answer,
@@ -99,20 +111,29 @@ export default {
       question: {
       },
       answers: [{
-        id: '',
-        name: '李惟慈',
-        time: '2019/02/04  23:52',
-        description: '.',
-        link: 'https://hackmd.io/B6k3Eyk9SMSp3AU3RyktIw?both',
+        id: 1,
+        name: 'Jessie Tang',
+        time: '2019/11/29  14:03',
+        description: '區塊鍊要真的實際應用，還要面對許多實際問題，可以參考這篇Medium。',
+        link: 'https://medium.com/@tino28082000/%E4%BB%80%E9%BA%BC%E6%98%AF%E5%8D%80%E5%A1%8A%E9%8F%88%E5%88%86%E5%8F%89-c155f2cc0a8b',
         starAmount: 5
 
       },
       {
-        id: '',
-        name: '李惟慈',
-        time: '2019/02/04  23:52',
-        description: '.',
-        link: 'https://hackmd.io',
+        id: 2,
+        name: '蔡瑋宏',
+        time: '2019/11/29  16:37',
+        description: '其實區塊鍊的前景還是樂觀的拉，只是還沒有適合的商業模型。',
+        link: 'https://iknow.stpi.narl.org.tw/Post/Read.aspx?PostID=14929',
+        starAmount: 5
+
+      },
+      {
+        id: 3,
+        name: '李信穎',
+        time: '2019/02/04  21:52',
+        description: '區塊鍊對非科技背景的人來說有沒有其價值，值得討論。',
+        link: 'https://medium.com/@astromnhsu/033-7c88ae2a90c0',
         starAmount: 5
 
       }]
@@ -120,7 +141,7 @@ export default {
   },
   methods: {
     makeDonateCard () {
-      fetch(url + 'api/questions/' + this.$route.params.id + '/donate', {
+      fetch(url + 'api/3/' + this.$route.params.id + '/donate', {
         method: 'post',
         headers: new Headers({
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -145,23 +166,8 @@ export default {
   padding-left: 100px;
   padding-right:100px;
   margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 .question-container .title h1 {
   font-family: 'Noto Serif TC', serif !important;
 }
-.el-col {
-  border-radius: 4px;
-}
-// .header {
-//   background:#435058 !important;
-//   color: white;
-//   .search {
-//     &__input {
-//       background: #435058;
-//     }
-//   }
-// }
 </style>

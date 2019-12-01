@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="app">
   <div>
     <el-row class="home-section">
       <el-col :span="15">
@@ -19,7 +19,7 @@
             <h1 class="title-18" >我要發問</h1>
               <input type="text" class="input-4" placeholder="  問題內容">
                 <router-link class="router-link" :to="{ name: 'home'}">
-                <button class="submit-button-1" style="margin-top:60px;height:37px">送出</button>
+                <button @click="localStorage.setItem('tempQuestion', this.ask)" class="submit-button-1" style="margin-top:60px;height:37px">送出</button>
                 </router-link>
             </div>
         </el-col>
@@ -68,7 +68,13 @@
 </template>
 <script>
 export default {
-  name: 'home'
+  name: 'home',
+  data () {
+    return {
+      ask: ''
+    }
+  }
+
 }
 </script>
 <style lang="scss">

@@ -35,11 +35,11 @@ export default {
               })
             }).then(data =>
               data.json().then(data => {
-                localStorage.setItem('token', data.accessToken)
+                localStorage.setItem('token', data.access_token)
                 fetch(url + 'api/users/info', {
                   method: 'get',
                   headers: new Headers({
-                    'Authorization': 'Bearer ' + data.accessToken,
+                    'Authorization': 'Bearer ' + data.access_token,
                     'Content-Type': 'application/json'
                   })
                 }).then(data => {

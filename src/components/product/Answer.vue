@@ -2,11 +2,11 @@
   <div class="answer-background">
     <div style="display: block;">
     <img src="../../assets/star.png" class="voteStar" @click="addStar">
-    <h1 class="voteNum">{{this.answer.starAmount}}</h1>
+    <h1 class="voteNum">{{this.answer.count}}</h1>
     </div>
     <div class="answer-container">
         <div class="ans-name_container">
-          <img src="../../assets/selfie.png">
+          <img src="../../assets/sky.jpeg">
           <h1 class="ans-name">{{this.answer.name}}</h1>
           <h1 class="ans-name"># {{this.answer.answerOrder}}</h1>
           <h2>{{this.answer.time}}</h2>
@@ -28,6 +28,9 @@
 import linkPrevue from '../LinkPreview'
 export default {
   name: 'Answer',
+  mounted: function () {
+    console.log(this.answer.imgSrc)
+  },
   components: {
     linkPrevue
   },

@@ -4,6 +4,8 @@
         <el-col :span="11">
             <h1 class="title-3">信用卡付款</h1>
             <div class="pay-container">
+              <h1 class="title-3">近期解鎖</h1>
+              <!--
                 <h1 class="title-2">卡號</h1>
                 <input v-model="card.cardNo" type="text" class="input-1">
                 <div class="block-0">
@@ -18,11 +20,11 @@
                         <h1 class="title-2" style="margin-top:40px; width:60%;">背面末三碼</h1>
                         <input v-model="card.securityCode" type="text" class="input-1" style="display: inline; width:90%;">
                     </div>
-                </div>
+                </div>-->
             </div>
-                <!-- <router-link class="router-link" :to="{ name: 'questionList'}"> -->
+                 <!--<router-link class="router-link" :to="{ name: 'questionList'}">
                 <button @click="makeDonateCard" class="submit-button-1" style="margin-top: 50px;">下一步</button>
-                <!-- </router-link> -->
+                 </router-link>-->
         </el-col>
         <el-col :span="2">
             <div style="margin-top:100px;">
@@ -69,7 +71,6 @@ export default {
   },
   methods: {
     makeDonateCard: function () {
-      console.log('jijiji')
       fetch(url + 'api/questions/' + this.$route.params.id + '/donate', {
         method: 'post',
         headers: new Headers({
@@ -80,6 +81,7 @@ export default {
       }).then(router.push('../questionList/'))
     },
     makeDonateIbon: function () {
+      console.log(this.ibon)
       fetch(url + 'api/questions/' + this.$route.params.id + '/donate', {
         method: 'post',
         headers: new Headers({

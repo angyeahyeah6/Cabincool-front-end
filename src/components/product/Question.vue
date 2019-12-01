@@ -2,8 +2,8 @@
     <div class="question-container">
         <div class="name_container">
           <img src="../../assets/selfie.png">
-          <h1 class="name">{{this.question.name}}</h1>
-          <h2>{{this.question.time}}</h2>
+          <h1 class="name">李惟慈</h1>
+          <h2 class="time">{{this.question.time}}</h2>
           <h1 class="category" style="margin-left: 600px;"># {{this.question.category}}</h1>
         </div>
         <br>
@@ -30,6 +30,7 @@ export default {
   },
   data () {
     return {
+      mgSrc: '../../assets/selfie.png'
     }
   },
   method: {
@@ -45,38 +46,32 @@ export default {
       })
     }
   }
-  // computed: {
-  //   ...mapState({
-  //     userName: state => state.userName
-  //   })
-  // }
 }
 </script>
 <style lang="scss">
 .question-container{
   margin: auto;
-  height:400px;
+  height: 400px;
   display: block;
   .name_container{
     display: flex;
-    height:25%;
     margin-top:5%;
     img{
       width:50px;
       height:50px;
-      padding:8px;
+      padding: 10px;
       border-radius: 50%;
     }
     .name{
+      width: 10%;
       font-size: 18px;
-      margin-top:2%;
-      padding:8px;
+      margin: 2%;
     }
-    h2{
+    .time{
+      width: 50%;
       color: grey;
       font-size: 15px;
-      margin-top:2%;
-      padding:8px;
+      margin: 2%;
     }
     .category{
       position:relative;

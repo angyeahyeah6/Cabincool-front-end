@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app">
         <el-row>
             <el-col :span="9" :offset="2">
                 <div class="do-display-container">
