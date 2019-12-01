@@ -1,5 +1,4 @@
 <template>
-<v-layout>
     <div class="respond-container">
         <div class="black-header">
             <img src="../../assets/selfie.png">
@@ -7,20 +6,19 @@
         </div>
         <div class="description">
             <input v-model="description" type="text" placeholder="  說明">
+
         </div>
         <div class="web-link">
             <input v-model="link" type="text" placeholder="  網址" style="height:25%;">
-            <button class="submit-button-1" @click='makeRespond'>傳送</button>
+            <button @click="makeRespond">傳送</button>
         </div>
     </div>
-    </v-layout>
+
 </template>
 <script>
 // import { url } from '../../url'
 // import router from '../../router'
 export default {
-  // mounted:{
-  // },
   data: function () {
     return {
       userName: localStorage.getItem('userName'),
@@ -33,25 +31,7 @@ export default {
       type: Number
     }
   },
-  computed: {
-  },
   method: {
-    makeRespond () {
-      console.log('product/' + this.$route.id)
-      // fetch(url + 'api/questions/' + this.$route.params.id + '/answers', {
-      //   method: 'post',
-      //   headers: new Headers({
-      //     'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      //     'Content-Type': 'application/json'
-      //   }),
-      //   body: JSON.stringify({
-      //     'Name': localStorage.getItem('userName'),
-      //     'description': this.description,
-      //     'link': this.link
-      //   })
-      // })
-      // router.push('questionList/' + this.$route.id)
-    }
   }
 }
 </script>

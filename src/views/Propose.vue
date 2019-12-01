@@ -107,9 +107,8 @@ export default {
     //   console.log(this.data)
     },
     makeQuestion () {
-      console.log('aah')
+      console.log(this.data)
       if (this.data.title !== '') {
-        console.log('hhh')
         fetch(url + 'api/questions', {
           method: 'post',
           headers: new Headers({
@@ -117,7 +116,7 @@ export default {
             'Content-Type': 'application/json'
           }),
           body: JSON.stringify(this.data)
-        }).then(data => data.json())
+        }).then(data => console.log(data.json()))
       }
     }
   },

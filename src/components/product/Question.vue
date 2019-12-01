@@ -1,8 +1,8 @@
 <template>
     <div class="question-container">
         <div class="name_container">
-          <img src="../../assets/selfie.png">
-          <h1 class="name">李惟慈</h1>
+          <img v-bind:src="this.question.avator_url">
+          <h1 class="name">{{this.question.author_name}}</h1>
           <h2 class="time">{{this.question.time}}</h2>
           <h1 class="category" style="margin-left: 600px;"># {{this.question.category}}</h1>
         </div>

@@ -22,11 +22,11 @@
         <router-link @click="saveQId(question.id)" class="router-link" :to="{ name: 'product', params: { id: question.id }}">
         <el-col :span="5" v-if="question.finished==true && x % 4 === 0">
           <div class="single-question">
-            <h1 class="category"># {{question.category}} {{x}}</h1>
-            <h1 v-if="question.title<90" class="questionTitle">{{question.title}}</h1>
-            <h1 v-else class="questionTitle">{{question.title.substring(0,60)}} ...</h1>
+            <h1 class="category"># {{question.category}}</h1>
+            <h1 v-if="question.title.length <50" class="questionTitle">{{question.title}}</h1>
+            <h1 v-else class="questionTitle">{{question.title.substring(0,50)}} ...</h1>
             <div class="toBottom">
-              <h1 class="name">{{question.name}}</h1>
+              <h1 class="name">{{question.author_name}}</h1>
               <h1 class="name">{{question.time}}</h1>
               <div class="line"></div>
                 <h1>最佳解答</h1>
@@ -36,11 +36,11 @@
         </el-col>
         <el-col :span="5" :offset="1" v-else-if="question.finished==true && x % 4 !== 0">
           <div class="single-question">
-            <h1 class="category"># {{question.category}} {{x}}</h1>
-            <h1 v-if="question.title<60" class="questionTitle">{{question.title}}</h1>
-            <h1 v-else class="questionTitle">{{question.title.substring(0,60)}} ...</h1>
+            <h1 class="category"># {{question.category}}</h1>
+            <h1 v-if="question.title.length<50" class="questionTitle">{{question.title}}</h1>
+            <h1 v-else class="questionTitle">{{question.title.substring(0,50)}} ...</h1>
             <div class="toBottom">
-            <h1 class="name">{{question.name}}</h1>
+            <h1 class="name">{{question.author_name}}</h1>
             <h1 class="name">{{question.time}}</h1>
             <div class="line"></div>
             <h1>最佳解答</h1>
@@ -49,25 +49,25 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="5" v-else-if="question.finished==false && x % 4 === 0">
+        <el-col :span="5" v-else-if="question.finished==false && x % 4 == 0">
           <div class="single-question">
             <h1 class="category"># {{question.category}}</h1>
-            <h1 v-if="question.title<100" class="questionTitle">{{question.title}}</h1>
-            <h1 v-else class="questionTitle">{{question.title.substring(0,100)}} ...</h1>
+            <h1 v-if="question.title.length<50" class="questionTitle">{{question.title}}</h1>
+            <h1 v-else class="questionTitle">{{question.title.substring(0,50)}} ...</h1>
             <div class="toBottom">
-            <h1 class="name">{{question.name}}</h1>
-            <span><h1>NT {{question.amount}}</h1><h1 class="name">{{ question.time }}</h1></span>
+            <h1 class="name">{{question.author_name}}</h1>
+            <span><h1>NT {{question.totalAmount}}</h1><h1 class="name">{{ question.time }}</h1></span>
             </div>
           </div>
         </el-col>
         <el-col :span="5" :offset="1" v-else>
           <div class="single-question">
             <h1 class="category"># {{question.category}}</h1>
-            <h1 v-if="question.title<100" class="questionTitle">{{question.title}}</h1>
-            <h1 v-else class="questionTitle">{{question.title.substring(0,100)}} ...</h1>
+            <h1 v-if="question.title.length<50" class="questionTitle">{{question.title}}</h1>
+            <h1 v-else class="questionTitle">{{question.title.substring(0,50)}} ...</h1>
             <div class="toBottom">
-            <h1 class="name">{{question.name}}</h1>
-            <span><h1>NT {{question.amount}}</h1><h1 class="name">{{ question.time }}</h1></span>
+            <h1 class="name">{{question.author_name}}</h1>
+            <span><h1>NT {{question.totalAmount}}</h1><h1 class="name">{{ question.time }}</h1></span>
             </div>
           </div>
         </el-col>
@@ -99,15 +99,30 @@ export default {
       .then(data => {
         data.json().then((data) => {
           for (var i = 0; i < data.length; i++) {
+            var temp = {}
             fetch(url + 'api/questions/' + String(data[i]), {
               method: 'get',
               headers: new Headers({
                 'Content-Type': 'application/json'
               })
             }).then(data => data.json().then(data => {
-              console.log((10 - Math.floor(Math.random() * 1000) % 10))
-              data.amount = Math.floor(Math.random() * 1000) + (10 - Math.floor(Math.random() * 1000) % 10)
-              this.questions.push(data)
+              if (Date(data.time) > Date.now()) {
+                data.finished = true
+              } else {
+                data.finished = false
+              }
+              temp = data
+            }))
+            fetch(url + 'api/questions/' + String(data[i]) + 'donate', {
+              method: 'get',
+              headers: new Headers({
+                'Content-Type': 'application/json'
+              })
+            }).then(data => data.json().then(data => {
+              temp.remainTime = data.remainTime
+              temp.totalAmount = data.totalAmount
+              this.questions.push(temp)
+              console.log(temp)
             }))
           }
         })

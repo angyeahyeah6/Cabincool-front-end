@@ -9,16 +9,20 @@
       >
       <span class="search__icon mdi mdi-magnify"></span>
     </div>
+    <router-link class="router-link" :to="{ name: 'home'}">
     <a
-      href="/"
       class="title"
-    ><img src="../assets/cabincool-logo.png" width="17%"></a>
+    ><img src="../assets/cabincool-logo.png" width="17%"></a></router-link>
     <ol class="nav">
       <li class="nav-word">
-        <a href="/propose">提問</a>
+        <router-link class="router-link" :to="{ name: 'propose'}">
+        <a>提問</a>
+        </router-link>
       </li>
       <li class="nav-word">
-        <a href="/questionList">探索</a>
+        <router-link class="router-link" :to="{ name: 'questionList'}">
+        <a>探索</a>
+        </router-link>
       </li>
     </ol>
     <LoginButton></LoginButton>
@@ -94,6 +98,7 @@ $nav-height: 56px;
   .title {
     position: absolute;
     left: 46%;
+    bottom:20%;
   }
   .nav {
     display: flex;

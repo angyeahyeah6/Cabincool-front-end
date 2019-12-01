@@ -47,7 +47,8 @@ export default {
                     data => {
                       console.log(data)
                       localStorage.setItem('email', data.email)
-                      localStorage.setItem('userName', data.username)
+                      localStorage.setItem('userName', data.name)
+                      localStorage.setItem('avator_url', data.avator_url)
                       localStorage.setItem('uid', data.uid)
                     }
                   )

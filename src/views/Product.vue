@@ -31,7 +31,7 @@ import Donate from '../components/product/DonateSection'
 import AddOn from '../components/product/AddOn'
 import Respond from '../components/product/Respond'
 import { url } from '../url'
-import { router } from '../router'
+import { router } from '../router/index'
 export default {
   name: 'product',
   mounted () {
@@ -110,33 +110,33 @@ export default {
       },
       question: {
       },
-      answers: [{
-        id: 1,
-        name: 'Jessie Tang',
-        time: '2019/11/29  14:03',
-        description: '區塊鍊要真的實際應用，還要面對許多實際問題，可以參考這篇Medium。',
-        link: 'https://medium.com/@tino28082000/%E4%BB%80%E9%BA%BC%E6%98%AF%E5%8D%80%E5%A1%8A%E9%8F%88%E5%88%86%E5%8F%89-c155f2cc0a8b',
-        starAmount: 5
+      answers: []
+      //   id: 1,
+      //   name: 'Jessie Tang',
+      //   time: '2019/11/29  14:03',
+      //   description: '區塊鍊要真的實際應用，還要面對許多實際問題，可以參考這篇Medium。',
+      //   link: 'https://medium.com/@tino28082000/%E4%BB%80%E9%BA%BC%E6%98%AF%E5%8D%80%E5%A1%8A%E9%8F%88%E5%88%86%E5%8F%89-c155f2cc0a8b',
+      //   starAmount: 5
 
-      },
-      {
-        id: 2,
-        name: '蔡瑋宏',
-        time: '2019/11/29  16:37',
-        description: '其實區塊鍊的前景還是樂觀的拉，只是還沒有適合的商業模型。',
-        link: 'https://iknow.stpi.narl.org.tw/Post/Read.aspx?PostID=14929',
-        starAmount: 5
+      // },
+      // {
+      //   id: 2,
+      //   name: '蔡瑋宏',
+      //   time: '2019/11/29  16:37',
+      //   description: '其實區塊鍊的前景還是樂觀的拉，只是還沒有適合的商業模型。',
+      //   link: 'https://iknow.stpi.narl.org.tw/Post/Read.aspx?PostID=14929',
+      //   starAmount: 5
 
-      },
-      {
-        id: 3,
-        name: '李信穎',
-        time: '2019/02/04  21:52',
-        description: '區塊鍊對非科技背景的人來說有沒有其價值，值得討論。',
-        link: 'https://medium.com/@astromnhsu/033-7c88ae2a90c0',
-        starAmount: 5
+      // },
+      // {
+      //   id: 3,
+      //   name: '李信穎',
+      //   time: '2019/02/04  21:52',
+      //   description: '區塊鍊對非科技背景的人來說有沒有其價值，值得討論。',
+      //   link: 'https://medium.com/@astromnhsu/033-7c88ae2a90c0',
+      //   starAmount: 5
 
-      }]
+      // }]
     }
   },
   methods: {
