@@ -1,5 +1,6 @@
 <template>
   <button
+  v-if="notLogin"
     @click="signin"
     class="login-btn"
   >
@@ -7,6 +8,7 @@
       class="login-btn__logo"
       src="../assets/google-login.png"
     >登入</button>
+    <img v-bind:src="imgSrc" class="profile_pic" v-else>
 </template>
 
 <script>
@@ -16,8 +18,18 @@ import { url } from '../url'
 export default {
   data: () => ({
     clientId: '149578749039-8ki9dmmfnod66fl59hd6mduedr3rvre3.apps.googleusercontent.com',
-    token: ''
+    token: '',
+    notLogin: true,
+    imgSrc: localStorage.getItem('avator_url')
   }),
+  watch: {
+    $route: function () {
+      if (localStorage.getItem('token') !== '') {
+        console.log(localStorage.getItem('token'))
+        this.notLogin = false
+      }
+    }
+  },
   methods: {
     signin () {
       var provider = new firebase.auth.GoogleAuthProvider()
@@ -61,6 +73,10 @@ export default {
           })
         }
       })
+      if (localStorage.getItem('token') !== '') {
+        console.log(localStorage.getItem('token'))
+        this.notLogin = false
+      }
     }
   }
 }
@@ -79,6 +95,11 @@ export default {
 </script>
 
 <style lang="scss">
+.profile_pic{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
 .login-btn {
   display: flex;
   align-items: center;

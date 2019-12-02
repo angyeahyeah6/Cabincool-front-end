@@ -6,6 +6,7 @@ import Propose from '../views/Propose.vue'
 import QuestionList from '../views/QuestionList.vue'
 import Donate from '../views/Donate.vue'
 import Payment from '../views/Payment.vue'
+import Searchresult from '../views/Searchresult.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -38,6 +39,11 @@ const routes = [
     path: '/payment/:id',
     name: 'payment',
     component: Payment
+  },
+  {
+    path: '/searchresult',
+    name: 'serachresult',
+    component: Searchresult
   }
 ]
 // router.beforeEach((to, from, next) => {

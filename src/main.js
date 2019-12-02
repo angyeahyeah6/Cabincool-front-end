@@ -34,6 +34,7 @@ Vue.config.productionTip = false
 
 // global variable
 Vue.prototype.$questions = []
+Vue.prototype.$search = ''
 
 // chat area
 

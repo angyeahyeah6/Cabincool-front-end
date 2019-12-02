@@ -1,24 +1,14 @@
 <template>
   <div id="app">
-    <el-row class="menu">
-      <ol>
-        <li @click="displayCategory('社會')" :class="{choose:isActive[0]}">社會</li>
-        <li @click="displayCategory('商業')" :class="{choose:isActive[1]}">商業</li>
-        <li @click="displayCategory('科技')" :class="{choose:isActive[2]}">科技</li>
-        <li @click="displayCategory('科學')" :class="{choose:isActive[3]}">科學</li>
-        <li @click="displayCategory('健康')" :class="{choose:isActive[4]}">健康</li>
-        <li @click="displayCategory('設計')" :class="{choose:isActive[5]}">設計</li>
-        <li @click="displayCategory('其他')" :class="{choose:isActive[6]}">其他</li>
-      </ol>
-    </el-row>
-    <el-row>
+    <!--<el-row>
       <ol class="menu_2">
-        <li @click="filterHot()" :class="{choose: isHot}">熱門</li>
-        <li @click="filterNew()" :class="{choose: isNew}">最新</li>
+        <li @click="filterHot()">熱門</li>
+        <li @click="filterNew()">最新</li>
       </ol>
-    </el-row>
+    </el-row>-->
+    <h1 class="title-1">搜尋結果: {{search}}</h1>
     <el-row>
-      <div v-for="(question ,x) in filterQuestions" :key="x">
+      <div v-for="(question ,x) in filterbysearch" :key="x">
         <router-link @click="saveQId(question.id)" class="router-link" :to="{ name: 'product', params: { id: question.id }}">
         <el-col :span="5" v-if="question.finished==true && x % 4 === 0">
           <div class="single-question">
@@ -78,17 +68,33 @@
 </template>
 
 <script>
-import { url } from '../url'
+// import { url } from '../url'
 export default {
-  name: 'questionList',
-  isHot: false,
-  isNew: false,
-  method: {
+  data: () => ({
+    search: '2',
+    isActive: [ false, false, false, false, false, false, false ],
+    filterQuestions: []
+  }),
+  name: 'searchresult',
+  created () {
+    this.filterQuestions = this.$questions
+    this.search = this.$search
+  },
+  computed: {
+    filterbysearch: function () {
+      return this.filterQuestions.filter((question) => {
+        return question.title.toLowerCase().match(this.search.toLowerCase())
+      })
+    }
+  }
+/* method: {
     saveQId (id) {
       localStorage.setItem('questionId', id)
     }
   },
   mounted () {
+    this.search = this.$search
+    console.log('result: ' + this.$search)
     fetch(url + 'api/questions', {
       method: 'get',
       headers: new Headers({
@@ -112,29 +118,22 @@ export default {
                 data.finished = false
               }
               temp = data
-              this.$questions.push(temp)
             }))
-            // fetch(url + 'api/questions/' + String(data[i]) + 'donate', {
-            //   method: 'get',
-            //   headers: new Headers({
-            //     'Content-Type': 'application/json'
-            //   })
-            // }).then(data => data.json().then(data => {
-            //   temp.remainTime = 30
-            //   temp.totalAmount = Math.floor(Math.random()) * 100
-
-            // }))
+            fetch(url + 'api/questions/' + String(data[i]) + 'donate', {
+              method: 'get',
+              headers: new Headers({
+                'Content-Type': 'application/json'
+              })
+            }).then(data => data.json().then(data => {
+              temp.remainTime = 30
+              temp.totalAmount = Math.floor(Math.random()) * 100
+              this.$questions.push(temp)
+              // console.log(temp)
+            }))
           }
         })
       }
       )
-  },
-  data () {
-    return {
-      isActive: [ false, false, false, false, false, false, false ],
-      // questions: [],
-      filterQuestions: []
-    }
   },
   created () {
     this.filterQuestions = this.$questions
@@ -170,7 +169,14 @@ export default {
       this.isNew = false
       this.isHot = true
     }
-  }
+  },
+  computed: {
+    filterbysearch: function () {
+      return this.filterQuestions.filter((question) => {
+        return question.title.toLowerCase().match(this.search.toLowerCase())
+      })
+    }
+  } */
 }
 </script>
 <style lang="scss">

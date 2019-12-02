@@ -10,8 +10,8 @@
         </div>
         <div class="web-link">
             <input v-model="link" type="text" placeholder="  網址" style="height:25%;">
+            <button class ="submit-button-1" style="float: right; margin:0 10px 10px 30px;" @click="makeRespond">傳送</button>
         </div>
-        <button class ="submit-button-1" style="float: right; margin:auto;" @click="makeRespond">傳送</button>
     </div>
 
 </template>
@@ -32,17 +32,19 @@ export default {
       type: Number
     }
   },
-  method: {
+  methods: {
     makeRespond: function () {
-      fetch(url + 'api/questions/' + this.$route.id + '/answers', {
+      fetch(url + 'api/questions/' + this.qid + '/answers', {
         method: 'post',
         headers: new Headers({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
         }),
         body: JSON.stringify({
           'description': this.description,
           'link': this.link })
-      }).then(data => console.log(data.json()))
+      }).then(data => data.json())
+      // .then(window.location.reload(true))
     }
   }
 }

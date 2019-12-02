@@ -5,7 +5,7 @@
         <Question v-bind:question="question"></Question>
       </el-col>
       <el-col :span="5" :offset="1">
-        <Donate v-bind:donate="donate" :qid="question.id"></Donate>
+        <Donate v-bind:donate="donate" :qid="this.$route.params.id"></Donate>
       </el-col>
     </el-row>
     <el-row>
@@ -13,7 +13,7 @@
         <div v-for="(answer ,x) in answers" :key="x">
           <Answer v-bind:answer="answer"></Answer>
         </div>
-        <Respond></Respond>
+        <Respond v-bind:qid="this.$route.params.id"></Respond>
       </el-col>
       <el-col :span="6">
         <div v-for="(addOn ,x) in addOns" :key="x">

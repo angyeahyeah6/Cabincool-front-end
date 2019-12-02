@@ -33,7 +33,7 @@ export default {
       mgSrc: '../../assets/selfie.png'
     }
   },
-  method: {
+  methods: {
     getSinQues () {
       fetch(url + '/api/questions/' + this.question.id, {
         method: 'get',

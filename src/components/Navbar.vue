@@ -6,6 +6,8 @@
         type="text"
         placeholder="Search"
         autocomplete="off"
+        v-on:keyup.enter="searching"
+        v-model="search"
       >
       <span class="search__icon mdi mdi-magnify"></span>
     </div>
@@ -32,9 +34,18 @@
 <script>
 import LoginButton from '@/components/LoginButton'
 export default {
+  search: '',
   background: 'blue',
   components: {
     LoginButton
+  },
+  methods: {
+    searching: function () {
+      this.$search = this.search
+      this.$router.push({ path: 'Searchresult' })
+      console.log(this.$search)
+    }
+
   }
 }
 </script>
