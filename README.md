@@ -1,4 +1,8 @@
 # cabincool
+a website for everyone to obtain experts solution by fundraising
+
+## video
+[https://www.youtube.com/watch?v=m-hKVQIKY_Y]
 
 ## Project setup
 ```
